@@ -9,10 +9,10 @@
 #define MIN_MAZE_SIZE		5
 #define MAZE_SAFETY_SIZE	3
 #define STRETCH_RATIO		2       //mennyire níújtsa meg a képet
-#define KILLSWITCH			100
-#define NL					'\n'
-#define PATH				0
-#define WALL				1
+#define KILLSWITCH		100
+#define NL			'\n'
+#define PATH			0
+#define WALL			1
 
 #define PATH_COL	"\033[48;2;56;142;47m\033[38;2;56;142;47m"
 #define	WALL_COL	"\033[48;2;99;63;8m\033[38;2;99;63;8m"
@@ -185,7 +185,7 @@ int main(void) {
 	ModRecDiv(Maze, 0, s - 1, 0, s - 1, 1); //indexelés: 0..s-1
 	print_maze(Maze, s);
 	deallocate_maze(Maze, s);
-    enter();
+    	enter();
    
 	tidy_env();
 	return EXIT_SUCCESS;
