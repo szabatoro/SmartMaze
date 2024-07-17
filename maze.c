@@ -1,6 +1,6 @@
 // ---- Modified Recursive Division ----
-// Windows:	gcc -o mrd.exe mrd.c -s -O3
-// Linux:	gcc -o mrd mrd.c -s -O3
+// Windows:	gcc -o maze.exe maze.c -s -O3
+// Linux:	gcc -o maze maze.c -s -O3
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -47,7 +47,6 @@ void disable_ansi_escseq() {
 #endif
 
 typedef int** mtx;
-
 
 
 
@@ -120,7 +119,7 @@ int random(int min, int max) {					//itt a min és a max is benne van határokba
 
 
 void make_path(mtx m, int start, int length, int wall_i, int v) {	// letesz egy átjárót egy random helyre
-	int path_i = random(start, start + length - 1);		 // nem nézi meg hogy ott van-e már lyuk, ezért
+	int path_i = random(start, start + length - 1);		 			// nem nézi meg hogy ott van-e már lyuk, ezért
 	(v ? (m[wall_i][path_i] = PATH) : (m[path_i][wall_i] = PATH));	// tehet az előző helyére is és így csak egy lyuk lesz
 }
 
