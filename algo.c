@@ -1,6 +1,6 @@
 // ---- Modified Recursive Division ----
-// Windows:	gcc -o maze.exe maze.c -s -O3
-// Linux:	gcc -o maze maze.c -s -O3
+// Windows:	gcc -o algo.exe algo.c -s -O3
+// Linux:	gcc -o algo algo.c -s -O3
 
 #include <stdio.h>
 #include <stdlib.h>
