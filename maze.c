@@ -113,13 +113,13 @@ void print_maze(mtx m, int s) {
 //-------------------------------------- Modified Recursive Division --------------------------------------
 //---------------------------------------------------------------------------------------------------------
 
-int random(int min, int max) {		//itt a min és a max is benne van határokban
+int mrandom(int min, int max) {		//itt a min és a max is benne van határokban
 	return rand() % (max - min + 1) + min;
 }
 
 
 void make_path(mtx m, int start, int length, int wall_i, int v) {	// letesz egy átjárót egy random helyre
-	int path_i = random(start, start + length - 1);		 	// nem nézi meg hogy ott van-e már lyuk, ezért
+	int path_i = mrandom(start, start + length - 1);		 	// nem nézi meg hogy ott van-e már lyuk, ezért
 	(v ? (m[wall_i][path_i] = PATH) : (m[path_i][wall_i] = PATH));	// tehet az előző helyére is és így csak egy lyuk lesz
 }
 
@@ -136,7 +136,7 @@ void ModRecDiv(mtx m, int start_x, int end_x, int start_y, int end_y, int v) {
 // ha beakadna egy infinite loopba, a killswitch kidobja onnan
 	int wall_i, sbound, ebound, tries = 0;	// fan index, határai, próbálkozások
 	do {
-		wall_i = v ? random(start_x + 2, end_x - 2) : random(start_y + 2, end_y - 2);
+		wall_i = v ? mrandom(start_x + 2, end_x - 2) : mrandom(start_y + 2, end_y - 2);
 		sbound = v ? m[wall_i][start_y] : m[start_x][wall_i];		//fal határai, hogy lehessen ellenőrizni
 		ebound = v ? m[wall_i][end_y] : m[end_x][wall_i];		//-> új fal csak 2 másik fal között helyezkedhet el
 		tries++;
