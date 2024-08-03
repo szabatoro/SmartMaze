@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdg7rf0xbklb8"]
+
+[ext_resource type="Script" path="res://menuscripts/Button.gd" id="1_jk42n"]
+[ext_resource type="Script" path="res://menuscripts/QuitGame.gd" id="2_31mpx"]
+[ext_resource type="Script" path="res://menuscripts/LineEdit.gd" id="3_eihoa"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="StartGame" type="Button" parent="."]
+offset_left = 473.0
+offset_top = 219.0
+offset_right = 586.0
+offset_bottom = 250.0
+text = "Játék indítása"
+script = ExtResource("1_jk42n")
+
+[node name="QuitGame" type="Button" parent="."]
+offset_left = 493.0
+offset_top = 279.0
+offset_right = 566.0
+offset_bottom = 326.0
+text = "Kilépés"
+script = ExtResource("2_31mpx")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 351.0
+offset_top = 151.0
+offset_right = 704.0
+offset_bottom = 182.0
+placeholder_text = "Első pályaméret (10)"
+alignment = 1
+script = ExtResource("3_eihoa")
+
+[connection signal="pressed" from="StartGame" to="StartGame" method="_on_pressed"]
+[connection signal="pressed" from="QuitGame" to="StartGame" method="_on_quit_game_pressed"]
+[connection signal="pressed" from="QuitGame" to="QuitGame" method="_on_pressed"]
+[connection signal="text_changed" from="LineEdit" to="LineEdit" method="_on_text_changed"]

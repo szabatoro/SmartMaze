@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0jp7ff1hohqa"]
+
+[ext_resource type="Texture2D" uid="uid://mb8bh1iveo7g" path="res://assets/MapTiles.png" id="1_vs6ga"]
+[ext_resource type="Script" path="res://gamescripts/map.gd" id="2_phcwr"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5wmel"]
+texture = ExtResource("1_vs6ga")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_146u2"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_5wmel")
+
+[node name="Map" type="TileMap"]
+position = Vector2(-1.19209e-07, 2.38419e-07)
+scale = Vector2(1.05924, 1.16595)
+tile_set = SubResource("TileSet_146u2")
+format = 2
+script = ExtResource("2_phcwr")
