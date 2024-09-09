@@ -7,10 +7,15 @@ extends Node2D
 
 var start_steps
 var steps
+
+func get_steps():
+	var msize = Global.mapsize
+	return msize*msize/4
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# lépések (placeholder kiszámító)
-	start_steps = (Global.mapsize - 1)*(Global.mapsize - 1)/4
+	start_steps = get_steps()
 	steps = start_steps
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,4 +29,6 @@ func _process(delta):
 		# a következő menetben a játék 4 egységgel lesz nagyobb
 		Global.mapsize += 4
 		# újratöltjük a játékot, új pályát létrehozva ezzel
-		get_tree().reload_current_scene()
+		var tree_status = get_tree()
+		if tree_status != null:
+			get_tree().reload_current_scene()
