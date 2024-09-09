@@ -88,10 +88,19 @@ func mapgen(array):
 		for j in range(array[i].size()):
 			var celltype
 			if array[i][j] == 1:
-				celltype = Vector2i(0, 0)
+				if i == 0 and j == 0:
+					celltype = Vector2i(0,0)
+				elif i == array.size()-1 and j == 0:
+					celltype = Vector2i(1,0)
+				elif i == 0 and j == array.size()-1:
+					celltype = Vector2i(2,0)
+				elif i == array.size()-1 and j == array.size()-1:
+					celltype = Vector2i(3,0)
+				else:
+					celltype = Vector2i(0, 1)
 			else:
-				celltype = Vector2i(1, 0)
-			self.set_cell(0, Vector2i(j, i), 1, celltype)
+				celltype = Vector2i(1, 1)
+			self.set_cell(0, Vector2i(j, i), 0, celltype)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -113,13 +122,3 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
-
-
-
-
-
-
-
-
-

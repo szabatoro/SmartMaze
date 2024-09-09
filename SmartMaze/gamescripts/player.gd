@@ -10,7 +10,7 @@ func starting_position():
 	# a pályablokkok négyzetek, tehát az egyik oldal leolvasása elég
 	tilesizes = tilemap.get_tileset().tile_size.y 
 	# a vektor a textúra atlaszban lévő koordináták közül a járható úté, az ezekkel rendelkező blokkokat szedi össze
-	eligible_tiles = tilemap.get_used_cells_by_id(0,-1,Vector2i(1,0),-1)
+	eligible_tiles = tilemap.get_used_cells_by_id(0,-1,Vector2i(1,1),-1)
 	# a játékos mindig a legelső nem fal blokkból indul
 	current_tile = eligible_tiles.front()
 	# az előbbi blokk pozícióját adjuk meg a játékos pozíciójának

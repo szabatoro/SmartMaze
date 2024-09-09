@@ -20,7 +20,7 @@ func _process(delta):
 		steps = start_steps
 		get_tree().reload_current_scene()
 	# Ha a játékos eléri a célt, a pálya végetér, új pálya indul (erősen félkész)
-	if $Player.global_position == tilemap.map_to_local(tilemap.get_used_cells_by_id(0,-1,Vector2i(1,0),-1).back()):
+	if $Player.global_position == tilemap.map_to_local(tilemap.get_used_cells_by_id(0,-1,Vector2i(1,1),-1).back()):
 		# a következő menetben a játék 4 egységgel lesz nagyobb
 		Global.mapsize += 4
 		# újratöltjük a játékot, új pályát létrehozva ezzel
