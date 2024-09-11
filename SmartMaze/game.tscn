@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ns6o51gahc2n"]
+[gd_scene load_steps=7 format=3 uid="uid://ns6o51gahc2n"]
 
 [ext_resource type="PackedScene" uid="uid://b0jp7ff1hohqa" path="res://map.tscn" id="1_aqp5q"]
 [ext_resource type="Script" path="res://gamescripts/game.gd" id="1_d1m56"]
 [ext_resource type="PackedScene" uid="uid://cl0xgmev7ykwe" path="res://player.tscn" id="3_c8qds"]
 [ext_resource type="Script" path="res://gamescripts/Camera2D.gd" id="3_t3d7b"]
 [ext_resource type="Script" path="res://gamescripts/Stepcounter.gd" id="5_i4rt5"]
+[ext_resource type="Script" path="res://gamescripts/Mapcounter.gd" id="6_bfyhh"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("tilemap")]
 script = ExtResource("1_d1m56")
@@ -12,7 +13,6 @@ tilemap = NodePath("Map")
 
 [node name="Map" parent="." instance=ExtResource("1_aqp5q")]
 position = Vector2(0.00012207, 6.10352e-05)
-scale = Vector2(1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tilemap")]
 script = ExtResource("3_t3d7b")
@@ -30,3 +30,17 @@ offset_right = 1137.0
 offset_bottom = 40.0
 text = "Lépések: 0"
 script = ExtResource("5_i4rt5")
+
+[node name="Mapcounter" type="Label" parent="CanvasLayer"]
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 103.0
+offset_bottom = 35.0
+text = "Maradék idő: "
+script = ExtResource("6_bfyhh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="CanvasLayer/Mapcounter" method="_on_timer_timeout"]
