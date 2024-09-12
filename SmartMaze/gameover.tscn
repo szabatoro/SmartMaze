@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ce5hqqxs8qk4a"]
+
+[node name="Gameover" type="PopupMenu"]
+size = Vector2i(114, 100)
+visible = true
+item_count = 2
+item_0/text = "Újrakezdés"
+item_0/id = 0
+item_1/text = "Kilépés"
+item_1/id = 1

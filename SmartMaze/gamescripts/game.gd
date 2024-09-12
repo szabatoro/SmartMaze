@@ -22,16 +22,20 @@ func _ready():
 func _process(delta):
 	# ha elfogynak a lépések, újratölti a pályát
 	if steps == 0:
-		steps = start_steps
-		get_tree().reload_current_scene()
-	if $Timer.time_left < 1:
-		steps = start_steps
-		get_tree().reload_current_scene()
+		get_tree().paused = true
+		#steps = start_steps
+		#get_tree().reload_current_scene()		
 	# Ha a játékos eléri a célt, a pálya végetér, új pálya indul (erősen félkész)
 	if $Player.global_position == tilemap.map_to_local(tilemap.get_used_cells_by_id(0,-1,Vector2i(1,1),-1).back()):
 		# a következő menetben a játék 4 egységgel lesz nagyobb
 		Global.mapsize += 4
+		Global.waittime += 10.0
 		# újratöltjük a játékot, új pályát létrehozva ezzel
 		var tree_status = get_tree()
 		if tree_status != null:
 			get_tree().reload_current_scene()
+
+
+func _on_timer_timeout():
+	steps = start_steps
+	get_tree().reload_current_scene()

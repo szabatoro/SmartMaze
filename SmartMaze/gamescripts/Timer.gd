@@ -1,11 +1,11 @@
-extends Label
+extends Timer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	wait_time = Global.waittime # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.text = "Maradék idő: " + str(ceil(get_parent().get_parent().get_child(-2).time_left))
+	pass

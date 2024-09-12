@@ -7,3 +7,6 @@ var mapsize_setter
 
 # pályaméret
 var mapsize = 10
+
+# időzítő
+var waittime = 20.0
