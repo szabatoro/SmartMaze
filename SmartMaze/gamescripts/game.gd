@@ -37,9 +37,12 @@ func _process(delta):
 			get_tree().reload_current_scene()
 
 func _on_timer_timeout():
+	get_tree().paused = true
+	$Gameover.show()
+
+var menuid = 0
+
+func _on_gameover_id_pressed(menuid):
+	get_tree().paused = false
 	steps = start_steps
 	get_tree().reload_current_scene()
-
-
-#func _on_gameover_id_pressed(0):
-	#pass # Replace with function body.
