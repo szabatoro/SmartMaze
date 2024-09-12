@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ns6o51gahc2n"]
+[gd_scene load_steps=8 format=3 uid="uid://ns6o51gahc2n"]
 
 [ext_resource type="PackedScene" uid="uid://b0jp7ff1hohqa" path="res://map.tscn" id="1_aqp5q"]
 [ext_resource type="Script" path="res://gamescripts/game.gd" id="1_d1m56"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://gamescripts/Stepcounter.gd" id="5_i4rt5"]
 [ext_resource type="Script" path="res://gamescripts/Mapcounter.gd" id="6_bfyhh"]
 [ext_resource type="Script" path="res://gamescripts/Timer.gd" id="7_hsroa"]
-[ext_resource type="PackedScene" uid="uid://ce5hqqxs8qk4a" path="res://gameover.tscn" id="8_cen0e"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("tilemap")]
 script = ExtResource("1_d1m56")
@@ -46,9 +45,13 @@ wait_time = 20.0
 autostart = true
 script = ExtResource("7_hsroa")
 
-[node name="Gameover" parent="." instance=ExtResource("8_cen0e")]
-process_mode = 2
-initial_position = 2
+[node name="Gameover" type="PopupMenu" parent="."]
+item_count = 2
+item_0/text = "Újrakezdés"
+item_0/id = 0
+item_1/text = "Kilépés"
+item_1/id = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="CanvasLayer/Mapcounter" method="_on_timer_timeout"]
+[connection signal="id_pressed" from="Gameover" to="." method="_on_gameover_id_pressed"]

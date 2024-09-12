@@ -23,6 +23,7 @@ func _process(delta):
 	# ha elfogynak a lépések, újratölti a pályát
 	if steps == 0:
 		get_tree().paused = true
+		$Gameover.show()
 		#steps = start_steps
 		#get_tree().reload_current_scene()		
 	# Ha a játékos eléri a célt, a pálya végetér, új pálya indul (erősen félkész)
@@ -35,7 +36,10 @@ func _process(delta):
 		if tree_status != null:
 			get_tree().reload_current_scene()
 
-
 func _on_timer_timeout():
 	steps = start_steps
 	get_tree().reload_current_scene()
+
+
+#func _on_gameover_id_pressed(0):
+	#pass # Replace with function body.
