@@ -24,7 +24,7 @@ func _ready():
 func _process(delta):
 	# ha elfogynak a lépések, újratölti a pályát
 	if steps == 0:
-		get_tree().paused = true
+		Engine.time_scale = 0
 		$PauseMenu.show()
 		#steps = start_steps
 		#get_tree().reload_current_scene()		
