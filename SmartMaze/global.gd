@@ -10,3 +10,6 @@ var mapsize = 10
 
 # időzítő
 var waittime = 20.0
+
+# pontszám
+var score = 0

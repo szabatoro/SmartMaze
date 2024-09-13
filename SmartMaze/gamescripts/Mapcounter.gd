@@ -8,4 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.text = "Maradék idő: " + str(ceil(get_parent().get_parent().get_child(-2).time_left))
+	self.text = "Maradék idő: " + str(ceil(get_parent().get_parent().get_child(-3).time_left))

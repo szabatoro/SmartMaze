@@ -7,6 +7,8 @@ extends Node2D
 
 var start_steps
 var steps
+var calced = false #szükséges, hogy a _process-ben behívott pontszámítás ne 
+# menjen végbe egynél többször
 
 func get_steps():
 	var msize = Global.mapsize
@@ -23,26 +25,58 @@ func _process(delta):
 	# ha elfogynak a lépések, újratölti a pályát
 	if steps == 0:
 		get_tree().paused = true
-		$Gameover.show()
+		$PauseMenu.show()
 		#steps = start_steps
 		#get_tree().reload_current_scene()		
 	# Ha a játékos eléri a célt, a pálya végetér, új pálya indul (erősen félkész)
 	if $Player.global_position == tilemap.map_to_local(tilemap.get_used_cells_by_id(0,-1,Vector2i(1,1),-1).back()):
-		# a következő menetben a játék 4 egységgel lesz nagyobb
-		Global.mapsize += 4
-		Global.waittime += 10.0
-		# újratöltjük a játékot, új pályát létrehozva ezzel
-		var tree_status = get_tree()
-		if tree_status != null:
-			get_tree().reload_current_scene()
+		
+		win_screen()
+	#pause menu
+	if Input.is_action_just_pressed("escape"):
+		# Engine.time_scale alapján eldönti, már pauseolva van-e
+		# majd megjeleníti/elrejti a pause menut
+		if Engine.time_scale == 1:
+			Engine.time_scale = 0
+			$PauseMenu.show()
+		elif Engine.time_scale == 0:
+			Engine.time_scale = 1
+			$PauseMenu.hide()
+			
+# kiszámítjuk a jelenlegi pontot, az egész játék során szerzett pontot,
+# megjelenítjük a pályavégi összesítést
+func win_screen():
+	Engine.time_scale = 0
+	var current_score = ceil($Timer.time_left) + steps
+	if !calced:
+		Global.score += current_score
+		calced = true
+	# újratöltjük a játékot, új pályát létrehozva ezzel
+	$MapEnd.show()
+	$MapEnd/Score.text = str(current_score)
+	$MapEnd/TotalScore.text = str(Global.score)
 
+# ha lejár az időzítő, bedob a pause menube
 func _on_timer_timeout():
-	get_tree().paused = true
-	$Gameover.show()
+	Engine.time_scale = 0
+	$PauseMenu.show()
 
-var menuid = 0
+# ha az "újraindításra" kattintunk, újrakezdi a játékot
+func _on_restart_pressed():
+	Engine.time_scale = 1
+	steps = start_steps
+	get_tree().reload_current_scene()
 
-func _on_gameover_id_pressed(menuid):
-	get_tree().paused = false
+# kilépés
+func _on_exit_pressed():
+	get_tree().quit()
+
+#továbblépés a következő pályára
+func _on_continue_pressed():
+	Engine.time_scale = 1
+	# a következő menetben a játék 4 egységgel lesz nagyobb
+	# illetve 10 másodperccel több időnk lesz
+	Global.mapsize += 4
+	Global.waittime += 10.0
 	steps = start_steps
 	get_tree().reload_current_scene()

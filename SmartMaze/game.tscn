@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ns6o51gahc2n"]
+[gd_scene load_steps=9 format=3 uid="uid://ns6o51gahc2n"]
 
 [ext_resource type="PackedScene" uid="uid://b0jp7ff1hohqa" path="res://map.tscn" id="1_aqp5q"]
 [ext_resource type="Script" path="res://gamescripts/game.gd" id="1_d1m56"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://gamescripts/Stepcounter.gd" id="5_i4rt5"]
 [ext_resource type="Script" path="res://gamescripts/Mapcounter.gd" id="6_bfyhh"]
 [ext_resource type="Script" path="res://gamescripts/Timer.gd" id="7_hsroa"]
+[ext_resource type="Texture2D" uid="uid://dw6etidvxy2j0" path="res://assets/SM_Menu_Logo.png" id="8_y4p7w"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("tilemap")]
 script = ExtResource("1_d1m56")
@@ -15,6 +16,9 @@ tilemap = NodePath("Map")
 [node name="Map" parent="." instance=ExtResource("1_aqp5q")]
 position = Vector2(0.00012207, 6.10352e-05)
 
+[node name="Background" type="TileMap" parent="."]
+format = 2
+
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tilemap")]
 script = ExtResource("3_t3d7b")
 tilemap = NodePath("../Map")
@@ -22,21 +26,23 @@ tilemap = NodePath("../Map")
 [node name="Player" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("3_c8qds")]
 tilemap = NodePath("../Map")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Stepcounter" type="Label" parent="CanvasLayer"]
-offset_left = 1048.0
-offset_top = 17.0
-offset_right = 1137.0
-offset_bottom = 40.0
+[node name="Stepcounter" type="Label" parent="HUD"]
+offset_left = 1672.0
+offset_top = 21.0
+offset_right = 1874.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 40
 text = "Lépések: 0"
 script = ExtResource("5_i4rt5")
 
-[node name="Mapcounter" type="Label" parent="CanvasLayer"]
+[node name="Mapcounter" type="Label" parent="HUD"]
 offset_left = 14.0
 offset_top = 12.0
-offset_right = 103.0
-offset_bottom = 35.0
+offset_right = 304.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 40
 text = "Maradék idő: "
 script = ExtResource("6_bfyhh")
 
@@ -45,14 +51,100 @@ wait_time = 3.0
 autostart = true
 script = ExtResource("7_hsroa")
 
-[node name="Gameover" type="PopupMenu" parent="."]
-size = Vector2i(114, 100)
-item_count = 2
-item_0/text = "Újrakezdés"
-item_0/id = 0
-item_1/text = "Kilépés"
-item_1/id = 1
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Background" type="ColorRect" parent="PauseMenu"]
+offset_left = 768.0
+offset_top = 142.0
+offset_right = 808.0
+offset_bottom = 182.0
+scale = Vector2(11.2635, 17.6258)
+color = Color(0.598094, 0.426636, 0.123746, 1)
+
+[node name="Logo" type="Sprite2D" parent="PauseMenu"]
+position = Vector2(997, 350)
+scale = Vector2(6.5625, 6.5625)
+texture = ExtResource("8_y4p7w")
+
+[node name="Restart" type="Button" parent="PauseMenu"]
+offset_left = 882.0
+offset_top = 559.0
+offset_right = 1103.0
+offset_bottom = 622.0
+theme_override_font_sizes/font_size = 40
+text = "Újrakezdés"
+
+[node name="Exit" type="Button" parent="PauseMenu"]
+offset_left = 882.0
+offset_top = 671.0
+offset_right = 1103.0
+offset_bottom = 734.0
+theme_override_font_sizes/font_size = 40
+text = "Kilépés"
+
+[node name="MapEnd" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Background" type="ColorRect" parent="MapEnd"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(48.1808, 27.0561)
+color = Color(0.6, 0.427451, 0.12549, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="MapEnd"]
+position = Vector2(995, 328.251)
+scale = Vector2(6.9141, 6.9141)
+texture = ExtResource("8_y4p7w")
+
+[node name="ScoreLabel" type="Label" parent="MapEnd"]
+offset_left = 595.0
+offset_top = 528.251
+offset_right = 1448.0
+offset_bottom = 583.251
+theme_override_font_sizes/font_size = 40
+text = "Gratula! A pályán összeszedett pontszámod: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="MapEnd"]
+offset_left = 598.0
+offset_top = 626.251
+offset_right = 1451.0
+offset_bottom = 709.251
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalScoreLabel" type="Label" parent="MapEnd"]
+offset_left = 542.0
+offset_top = 747.251
+offset_right = 1547.0
+offset_bottom = 802.251
+theme_override_font_sizes/font_size = 40
+text = "Gratula! Az összes pályán összeszedett pontszámod: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalScore" type="Label" parent="MapEnd"]
+offset_left = 595.0
+offset_top = 838.251
+offset_right = 1448.0
+offset_bottom = 921.251
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Continue" type="Button" parent="MapEnd"]
+offset_left = 881.0
+offset_top = 1007.0
+offset_right = 1074.0
+offset_bottom = 1070.0
+theme_override_font_sizes/font_size = 40
+text = "Folytatás!"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timer" to="CanvasLayer/Mapcounter" method="_on_timer_timeout"]
-[connection signal="id_pressed" from="Gameover" to="." method="_on_gameover_id_pressed"]
+[connection signal="timeout" from="Timer" to="HUD/Mapcounter" method="_on_timer_timeout"]
+[connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PauseMenu/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MapEnd/Continue" to="." method="_on_continue_pressed"]

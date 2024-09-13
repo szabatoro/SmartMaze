@@ -7,26 +7,26 @@
 [node name="CanvasLayer" type="CanvasLayer"]
 
 [node name="StartGame" type="Button" parent="."]
-offset_left = 473.0
-offset_top = 219.0
-offset_right = 586.0
-offset_bottom = 250.0
+offset_left = 919.0
+offset_top = 479.0
+offset_right = 1032.0
+offset_bottom = 510.0
 text = "Játék indítása"
 script = ExtResource("1_jk42n")
 
 [node name="QuitGame" type="Button" parent="."]
-offset_left = 493.0
-offset_top = 279.0
-offset_right = 566.0
-offset_bottom = 326.0
+offset_left = 939.0
+offset_top = 539.0
+offset_right = 1012.0
+offset_bottom = 586.0
 text = "Kilépés"
 script = ExtResource("2_31mpx")
 
-[node name="LineEdit" type="LineEdit" parent="."]
-offset_left = 351.0
-offset_top = 151.0
-offset_right = 704.0
-offset_bottom = 182.0
+[node name="MapSize" type="LineEdit" parent="."]
+offset_left = 797.0
+offset_top = 411.0
+offset_right = 1150.0
+offset_bottom = 442.0
 placeholder_text = "Első pályaméret (10)"
 alignment = 1
 script = ExtResource("3_eihoa")
@@ -34,4 +34,4 @@ script = ExtResource("3_eihoa")
 [connection signal="pressed" from="StartGame" to="StartGame" method="_on_pressed"]
 [connection signal="pressed" from="QuitGame" to="StartGame" method="_on_quit_game_pressed"]
 [connection signal="pressed" from="QuitGame" to="QuitGame" method="_on_pressed"]
-[connection signal="text_changed" from="LineEdit" to="LineEdit" method="_on_text_changed"]
+[connection signal="text_changed" from="MapSize" to="MapSize" method="_on_text_changed"]
