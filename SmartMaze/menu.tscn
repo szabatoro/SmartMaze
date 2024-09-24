@@ -1,37 +1,212 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdg7rf0xbklb8"]
 
-[ext_resource type="Script" path="res://menuscripts/Button.gd" id="1_jk42n"]
-[ext_resource type="Script" path="res://menuscripts/QuitGame.gd" id="2_31mpx"]
-[ext_resource type="Script" path="res://menuscripts/LineEdit.gd" id="3_eihoa"]
+[ext_resource type="Script" path="res://menuscripts/mainmenu.gd" id="1_eg0k6"]
+[ext_resource type="AudioStream" uid="uid://bvmakljcag3r" path="res://assets/audio/menu.wav" id="2_0c8lr"]
+[ext_resource type="Script" path="res://menuscripts/settings.gd" id="2_ah383"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_eg0k6")
 
-[node name="StartGame" type="Button" parent="."]
-offset_left = 919.0
-offset_top = 479.0
-offset_right = 1032.0
-offset_bottom = 510.0
-text = "Játék indítása"
-script = ExtResource("1_jk42n")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0c8lr")
+autoplay = true
+bus = &"Music"
 
-[node name="QuitGame" type="Button" parent="."]
-offset_left = 939.0
-offset_top = 539.0
-offset_right = 1012.0
-offset_bottom = 586.0
-text = "Kilépés"
-script = ExtResource("2_31mpx")
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="MapSize" type="LineEdit" parent="."]
+[node name="MapSize" type="LineEdit" parent="Menu"]
 offset_left = 797.0
 offset_top = 411.0
 offset_right = 1150.0
 offset_bottom = 442.0
 placeholder_text = "Első pályaméret (10)"
 alignment = 1
-script = ExtResource("3_eihoa")
 
-[connection signal="pressed" from="StartGame" to="StartGame" method="_on_pressed"]
-[connection signal="pressed" from="QuitGame" to="StartGame" method="_on_quit_game_pressed"]
-[connection signal="pressed" from="QuitGame" to="QuitGame" method="_on_pressed"]
-[connection signal="text_changed" from="MapSize" to="MapSize" method="_on_text_changed"]
+[node name="StartGame" type="Button" parent="Menu"]
+offset_left = 919.0
+offset_top = 458.0
+offset_right = 1032.0
+offset_bottom = 489.0
+text = "Játék indítása"
+
+[node name="Settings" type="Button" parent="Menu"]
+offset_left = 919.0
+offset_top = 497.0
+offset_right = 1032.0
+offset_bottom = 528.0
+text = "Beállítások"
+
+[node name="QuitGame" type="Button" parent="Menu"]
+offset_left = 939.0
+offset_top = 539.0
+offset_right = 1012.0
+offset_bottom = 586.0
+text = "Kilépés"
+
+[node name="Options" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_ah383")
+
+[node name="OptionsContainer" type="VBoxContainer" parent="Options"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -98.0
+offset_right = 175.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Video" type="HBoxContainer" parent="Options/OptionsContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Labels" type="VBoxContainer" parent="Options/OptionsContainer/Video"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="FullScreen" type="Label" parent="Options/OptionsContainer/Video/Labels"]
+layout_mode = 2
+text = "Teljes képernyő"
+
+[node name="Borderless" type="Label" parent="Options/OptionsContainer/Video/Labels"]
+layout_mode = 2
+text = "Keret nélkül"
+
+[node name="VSync" type="Label" parent="Options/OptionsContainer/Video/Labels"]
+layout_mode = 2
+text = "VSync"
+
+[node name="Checks" type="VBoxContainer" parent="Options/OptionsContainer/Video"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="FullScreen" type="CheckBox" parent="Options/OptionsContainer/Video/Checks"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Borderless" type="CheckBox" parent="Options/OptionsContainer/Video/Checks"]
+layout_mode = 2
+
+[node name="VSync" type="CheckBox" parent="Options/OptionsContainer/Video/Checks"]
+layout_mode = 2
+button_pressed = true
+
+[node name="ScreenSizeContainer" type="VBoxContainer" parent="Options/OptionsContainer"]
+visible = false
+layout_mode = 2
+
+[node name="space" type="Container" parent="Options/OptionsContainer/ScreenSizeContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ScreenSize" type="Label" parent="Options/OptionsContainer/ScreenSizeContainer"]
+layout_mode = 2
+text = "Ablak méret"
+
+[node name="ScreenSizeSelector" type="OptionButton" parent="Options/OptionsContainer/ScreenSizeContainer"]
+layout_mode = 2
+item_count = 3
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = "1920x1080"
+popup/item_0/id = 0
+popup/item_1/text = "1600x900"
+popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 2
+
+[node name="space2" type="Container" parent="Options/OptionsContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Audio" type="HBoxContainer" parent="Options/OptionsContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Labels" type="VBoxContainer" parent="Options/OptionsContainer/Audio"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Master" type="Label" parent="Options/OptionsContainer/Audio/Labels"]
+layout_mode = 2
+text = "Fő hangerő"
+
+[node name="Music" type="Label" parent="Options/OptionsContainer/Audio/Labels"]
+layout_mode = 2
+text = "Zene hangerő"
+
+[node name="FX" type="Label" parent="Options/OptionsContainer/Audio/Labels"]
+layout_mode = 2
+text = "Effektek hangereje"
+
+[node name="Slider" type="VBoxContainer" parent="Options/OptionsContainer/Audio"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Master" type="HSlider" parent="Options/OptionsContainer/Audio/Slider"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="Music" type="HSlider" parent="Options/OptionsContainer/Audio/Slider"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="FX" type="HSlider" parent="Options/OptionsContainer/Audio/Slider"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="BackFromOptions" type="Button" parent="Options/OptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Visszalépés"
+
+[connection signal="text_changed" from="Menu/MapSize" to="." method="_on_map_size_text_changed"]
+[connection signal="text_changed" from="Menu/MapSize" to="Menu/MapSize" method="_on_text_changed"]
+[connection signal="pressed" from="Menu/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Menu/StartGame" to="Menu/StartGame" method="_on_pressed"]
+[connection signal="pressed" from="Menu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/Settings" to="Menu/Settings" method="_on_pressed"]
+[connection signal="pressed" from="Menu/QuitGame" to="." method="_on_quit_game_pressed"]
+[connection signal="pressed" from="Menu/QuitGame" to="Menu/StartGame" method="_on_quit_game_pressed"]
+[connection signal="pressed" from="Menu/QuitGame" to="Menu/QuitGame" method="_on_pressed"]
+[connection signal="toggled" from="Options/OptionsContainer/Video/Checks/FullScreen" to="Options" method="_on_full_screen_toggled"]
+[connection signal="toggled" from="Options/OptionsContainer/Video/Checks/Borderless" to="Options" method="_on_borderless_toggled"]
+[connection signal="toggled" from="Options/OptionsContainer/Video/Checks/VSync" to="Options" method="_on_v_sync_toggled"]
+[connection signal="item_selected" from="Options/OptionsContainer/ScreenSizeContainer/ScreenSizeSelector" to="Options" method="_on_screen_size_selector_item_selected"]
+[connection signal="value_changed" from="Options/OptionsContainer/Audio/Slider/Master" to="Options" method="_on_master_value_changed"]
+[connection signal="value_changed" from="Options/OptionsContainer/Audio/Slider/Music" to="Options" method="_on_music_value_changed"]
+[connection signal="value_changed" from="Options/OptionsContainer/Audio/Slider/FX" to="Options" method="_on_fx_value_changed"]
+[connection signal="pressed" from="Options/OptionsContainer/BackFromOptions" to="." method="_on_back_from_options_pressed"]
+[connection signal="pressed" from="Options/OptionsContainer/BackFromOptions" to="Options" method="_on_back_from_options_pressed"]
