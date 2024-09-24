@@ -20,6 +20,10 @@ func play_game_music():
 func play_menu_music():
 	_play_music(menu_music)
 
+func stop_menu_music():
+	get_node("audio_player").stop()
+
+		
 # https://youtu.be/lILnUD3xph8?si=fnkv-0KACFTNH3wr
 func _play_fx(music: AudioStream, volume = 0.0):
 	var fx_player = AudioStreamPlayer.new()

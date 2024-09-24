@@ -1,16 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdg7rf0xbklb8"]
+[gd_scene load_steps=3 format=3 uid="uid://bdg7rf0xbklb8"]
 
 [ext_resource type="Script" path="res://menuscripts/mainmenu.gd" id="1_eg0k6"]
-[ext_resource type="AudioStream" uid="uid://bvmakljcag3r" path="res://assets/audio/menu.wav" id="2_0c8lr"]
 [ext_resource type="Script" path="res://menuscripts/settings.gd" id="2_ah383"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_eg0k6")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_0c8lr")
-autoplay = true
-bus = &"Music"
+[node name="Button" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -53.0
+offset_bottom = 31.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 2
+toggle_mode = true
+text = "MUTE"
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
@@ -192,6 +198,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Visszalépés"
 
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="text_changed" from="Menu/MapSize" to="." method="_on_map_size_text_changed"]
 [connection signal="text_changed" from="Menu/MapSize" to="Menu/MapSize" method="_on_text_changed"]
 [connection signal="pressed" from="Menu/StartGame" to="." method="_on_start_game_pressed"]

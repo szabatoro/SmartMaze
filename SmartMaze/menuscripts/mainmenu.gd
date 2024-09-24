@@ -6,7 +6,7 @@ extends CanvasLayer
 func _ready():
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN, 0)
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, 1)
-	# AudioPlayer.play_menu_music()
+	AudioPlayer.play_menu_music()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,3 +36,7 @@ func _on_quit_game_pressed():
 
 func _on_back_from_options_pressed():
 	show_and_hide(menu,options)
+
+
+func _on_button_pressed():
+	var temp = $myStreamPlayer2D.get_playback_position()
