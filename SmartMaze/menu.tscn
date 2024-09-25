@@ -25,6 +25,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="MapSize" type="LineEdit" parent="Menu"]
+layout_mode = 0
 offset_left = 797.0
 offset_top = 411.0
 offset_right = 1150.0
@@ -33,6 +34,7 @@ placeholder_text = "Első pályaméret (10)"
 alignment = 1
 
 [node name="StartGame" type="Button" parent="Menu"]
+layout_mode = 0
 offset_left = 919.0
 offset_top = 458.0
 offset_right = 1032.0
@@ -40,6 +42,7 @@ offset_bottom = 489.0
 text = "Játék indítása"
 
 [node name="Settings" type="Button" parent="Menu"]
+layout_mode = 0
 offset_left = 919.0
 offset_top = 497.0
 offset_right = 1032.0
@@ -47,6 +50,7 @@ offset_bottom = 528.0
 text = "Beállítások"
 
 [node name="QuitGame" type="Button" parent="Menu"]
+layout_mode = 0
 offset_left = 939.0
 offset_top = 539.0
 offset_right = 1012.0
