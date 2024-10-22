@@ -19,8 +19,7 @@ func show_and_hide(first, second):
 
 func _on_start_game_pressed():
 	get_tree().change_scene_to_file("res://game.tscn")
-
-
+	AudioPlayer.play_menu_music()
 
 func _on_settings_pressed():
 	show_and_hide(options,menu)
@@ -39,4 +38,5 @@ func _on_back_from_options_pressed():
 
 
 func _on_button_pressed():
-	var temp = $myStreamPlayer2D.get_playback_position()
+	#var temp = $myStreamPlayer2D.get_playback_position()
+	AudioPlayer.play_menu_music()

@@ -8,11 +8,12 @@ const game_music = preload("res://assets/audio/game_music.ogg")
 
 func _play_music(music: AudioStream, volume = 0.0):
 	if stream == music:
-		return
-		
-	stream = music
-	volume = volume
-	play()
+		stop()
+		stream = null
+	else:
+		stream = music
+		volume = volume
+		play()
 	
 func play_game_music():
 	_play_music(game_music)
@@ -20,8 +21,8 @@ func play_game_music():
 func play_menu_music():
 	_play_music(menu_music)
 
-func stop_menu_music():
-	get_node("audio_player").stop()
+#func stop_menu_music():
+	#get_node("audio_player").stop()
 
 		
 # https://youtu.be/lILnUD3xph8?si=fnkv-0KACFTNH3wr
