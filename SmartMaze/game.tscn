@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ns6o51gahc2n"]
+[gd_scene load_steps=9 format=3 uid="uid://ns6o51gahc2n"]
 
 [ext_resource type="PackedScene" uid="uid://b0jp7ff1hohqa" path="res://map.tscn" id="1_aqp5q"]
 [ext_resource type="Script" path="res://gamescripts/game.gd" id="1_d1m56"]
@@ -8,16 +8,10 @@
 [ext_resource type="Script" path="res://gamescripts/Mapcounter.gd" id="6_bfyhh"]
 [ext_resource type="Script" path="res://gamescripts/Timer.gd" id="7_hsroa"]
 [ext_resource type="Texture2D" uid="uid://dw6etidvxy2j0" path="res://assets/SM_Menu_Logo.png" id="8_y4p7w"]
-[ext_resource type="AudioStream" uid="uid://0aksx3beuph2" path="res://assets/audio/game_music.ogg" id="9_1bmga"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("tilemap")]
 script = ExtResource("1_d1m56")
 tilemap = NodePath("Map")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_1bmga")
-autoplay = true
-bus = &"FX"
 
 [node name="Map" parent="." instance=ExtResource("1_aqp5q")]
 position = Vector2(0.00012207, 6.10352e-05)

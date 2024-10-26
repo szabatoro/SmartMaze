@@ -43,6 +43,7 @@ func _process(delta):
 			current_position = self.global_position 
 			# egy lépéssel kevesebb marad
 			get_parent().steps -= 1
+			AudioPlayer.play_fx(Global.grass_step)
 	# felfelé haladás, részleteket lásd feljebb
 	if Input.is_action_just_pressed("up"):
 		var next_tile = current_tile - Vector2i(0,1)
@@ -52,6 +53,7 @@ func _process(delta):
 			current_position = self.global_position
 			# egy lépéssel kevesebb marad
 			get_parent().steps -= 1
+			AudioPlayer.play_fx(Global.grass_step)
 	# balra haladás, részleteket lásd feljebb
 	if Input.is_action_just_pressed("left"):
 		var next_tile = current_tile - Vector2i(1,0)
@@ -61,6 +63,7 @@ func _process(delta):
 			current_position = self.global_position
 			# egy lépéssel kevesebb marad
 			get_parent().steps -= 1
+			AudioPlayer.play_fx(Global.grass_step)
 	# jobbra haladás, részleteket lásd feljebb
 	if Input.is_action_just_pressed("right"): 
 		var next_tile = current_tile + Vector2i(1,0)
@@ -70,3 +73,4 @@ func _process(delta):
 			current_position = self.global_position
 			# egy lépéssel kevesebb marad
 			get_parent().steps -= 1
+			AudioPlayer.play_fx(Global.grass_step)
