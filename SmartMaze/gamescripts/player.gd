@@ -38,15 +38,19 @@ func _process(delta):
 		if Input.is_action_pressed("down"):
 			move(Vector2i.DOWN)
 			$AnimatedSprite2D.play("moveD")
+			AudioPlayer.play_fx(Global.grass_step)
 		elif Input.is_action_pressed("up"):
 			move(Vector2i.UP)
 			$AnimatedSprite2D.play("moveU")
+			AudioPlayer.play_fx(Global.grass_step)
 		elif Input.is_action_pressed("left"):
 			move(Vector2i.LEFT)
 			$AnimatedSprite2D.play("moveL")
+			AudioPlayer.play_fx(Global.grass_step)
 		elif Input.is_action_pressed("right"): 
 			move(Vector2i.RIGHT)
 			$AnimatedSprite2D.play("moveR")
+			AudioPlayer.play_fx(Global.grass_step)
 				
 func move(direction:Vector2i):
 	if direction: #létezik-e a vector
