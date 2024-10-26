@@ -18,11 +18,13 @@ func _ready():
 	menu_music_player = AudioStreamPlayer.new()
 	add_child(menu_music_player)
 	menu_music_player.stream = Global.menu_music
+	menu_music_player.volume_db = -25
 	menu_music_player.bus = "Music"
 	
 	game_music_player = AudioStreamPlayer.new()
 	add_child(game_music_player)
 	game_music_player.stream = Global.game_music
+	game_music_player.volume_db = -25
 	game_music_player.bus = "Music"
 	
 	# Induláskor menüzene szól
@@ -63,7 +65,7 @@ func toggle_game_music():
 		game_music_player.seek(temp)
 
 # Effekt lejátszása
-func play_fx(sound: AudioStream, volume: float = 0.0):
+func play_fx(sound: AudioStream, volume: float = -20.0):
 	var fx_player = AudioStreamPlayer.new()
 	add_child(fx_player)
 	fx_player.stream = sound

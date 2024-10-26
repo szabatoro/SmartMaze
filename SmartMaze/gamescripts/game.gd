@@ -19,16 +19,19 @@ func _ready():
 	# lépések (placeholder kiszámító)
 	start_steps = get_steps()
 	steps = start_steps
+	AudioPlayer.play_game_music()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	# ha elfogynak a lépések, újratölti a pályát
 	if steps == 0:
 		Engine.time_scale = 0
 		$PauseMenu.show()
 		if !calced:
 			calced = true
-			AudioPlayer.play_fx(Global.game_lose)
+			AudioPlayer.stop_game_music()
+			AudioPlayer.play_fx(Global.game_lose,-10)
 		#steps = start_steps
 		#get_tree().reload_current_scene()		
 	# Ha a játékos eléri a célt, a pálya végetér, új pálya indul (erősen félkész)
@@ -66,6 +69,7 @@ func win_screen():
 func _on_timer_timeout():
 	Engine.time_scale = 0
 	$PauseMenu.show()
+	AudioPlayer.stop_game_music()
 
 # ha az "újraindításra" kattintunk, újrakezdi a játékot
 func _on_restart_pressed():
