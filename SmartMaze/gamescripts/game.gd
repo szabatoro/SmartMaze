@@ -76,9 +76,11 @@ func _on_restart_pressed():
 	Engine.time_scale = 1
 	steps = start_steps
 	get_tree().reload_current_scene()
+	AudioPlayer.play_fx(Global.menu_button_sound)
 
 # kilépés
 func _on_exit_pressed():
+	AudioPlayer.play_fx(Global.menu_button_sound)
 	get_tree().quit()
 
 #továbblépés a következő pályára
@@ -89,4 +91,12 @@ func _on_continue_pressed():
 	Global.mapsize += 4
 	Global.waittime += 10.0
 	steps = start_steps
+	AudioPlayer.play_fx(Global.menu_button_sound)
 	get_tree().reload_current_scene()
+
+
+func _on_back_to_menu_pressed():
+	AudioPlayer.play_fx(Global.menu_button_sound)
+	AudioPlayer.stop_game_music()
+	get_tree().change_scene_to_file("res://menu.tscn")
+	

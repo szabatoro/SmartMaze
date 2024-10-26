@@ -75,11 +75,19 @@ offset_bottom = 622.0
 theme_override_font_sizes/font_size = 40
 text = "Újrakezdés"
 
+[node name="Menu" type="Button" parent="PauseMenu"]
+offset_left = 882.0
+offset_top = 648.0
+offset_right = 1103.0
+offset_bottom = 711.0
+theme_override_font_sizes/font_size = 40
+text = "Menübe"
+
 [node name="Exit" type="Button" parent="PauseMenu"]
 offset_left = 882.0
-offset_top = 671.0
+offset_top = 742.0
 offset_right = 1103.0
-offset_bottom = 734.0
+offset_bottom = 805.0
 theme_override_font_sizes/font_size = 40
 text = "Kilépés"
 
@@ -135,16 +143,26 @@ theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Menu" type="Button" parent="MapEnd"]
+offset_left = 1007.0
+offset_top = 992.0
+offset_right = 1228.0
+offset_bottom = 1055.0
+theme_override_font_sizes/font_size = 40
+text = "Menübe"
+
 [node name="Continue" type="Button" parent="MapEnd"]
-offset_left = 881.0
-offset_top = 1007.0
-offset_right = 1074.0
-offset_bottom = 1070.0
+offset_left = 785.0
+offset_top = 992.0
+offset_right = 978.0
+offset_bottom = 1055.0
 theme_override_font_sizes/font_size = 40
 text = "Folytatás!"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="HUD/Mapcounter" method="_on_timer_timeout"]
 [connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PauseMenu/Menu" to="." method="_on_back_to_menu_pressed"]
 [connection signal="pressed" from="PauseMenu/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MapEnd/Menu" to="." method="_on_back_to_menu_pressed"]
 [connection signal="pressed" from="MapEnd/Continue" to="." method="_on_continue_pressed"]
