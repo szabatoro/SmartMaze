@@ -13,6 +13,7 @@ func _process(delta):
 
 
 func _on_full_screen_toggled(toggled_on):
+	AudioPlayer.play_fx(Global.menu_button_sound)
 	if (toggled_on):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN, 0)
 		screen_size_container.hide()
@@ -27,6 +28,7 @@ func _on_full_screen_toggled(toggled_on):
 
 
 func _on_borderless_toggled(toggled_on):
+	AudioPlayer.play_fx(Global.menu_button_sound)
 	if (toggled_on):
 		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, 1, 0)
 	else:
@@ -34,6 +36,7 @@ func _on_borderless_toggled(toggled_on):
 
 
 func _on_v_sync_toggled(toggled_on):
+	AudioPlayer.play_fx(Global.menu_button_sound)
 	if (toggled_on):
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED,0)
 	else:
