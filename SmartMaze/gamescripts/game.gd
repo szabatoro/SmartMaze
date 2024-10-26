@@ -19,13 +19,19 @@ func _ready():
 	# lépések (placeholder kiszámító)
 	start_steps = get_steps()
 	steps = start_steps
+	AudioPlayer.play_game_music()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	# ha elfogynak a lépések, újratölti a pályát
 	if steps == 0:
 		Engine.time_scale = 0
 		$PauseMenu.show()
+		if !calced:
+			calced = true
+			AudioPlayer.stop_game_music()
+			AudioPlayer.play_fx(Global.game_lose,-10)
 		#steps = start_steps
 		#get_tree().reload_current_scene()		
 	# Ha a játékos eléri a célt, a pálya végetér, új pálya indul (erősen félkész)
@@ -39,9 +45,11 @@ func _process(delta):
 		if Engine.time_scale == 1:
 			Engine.time_scale = 0
 			$PauseMenu.show()
+			AudioPlayer.toggle_game_music()
 		elif Engine.time_scale == 0:
 			Engine.time_scale = 1
 			$PauseMenu.hide()
+			AudioPlayer.toggle_game_music()
 			
 # kiszámítjuk a jelenlegi pontot, az egész játék során szerzett pontot,
 # megjelenítjük a pályavégi összesítést
@@ -51,6 +59,7 @@ func win_screen():
 	if !calced:
 		Global.score += current_score
 		calced = true
+		AudioPlayer.play_fx(Global.game_win)
 	# újratöltjük a játékot, új pályát létrehozva ezzel
 	$MapEnd.show()
 	$MapEnd/Score.text = str(current_score)
@@ -60,6 +69,7 @@ func win_screen():
 func _on_timer_timeout():
 	Engine.time_scale = 0
 	$PauseMenu.show()
+	AudioPlayer.stop_game_music()
 
 # ha az "újraindításra" kattintunk, újrakezdi a játékot
 func _on_restart_pressed():

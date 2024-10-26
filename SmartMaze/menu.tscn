@@ -6,23 +6,25 @@
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_eg0k6")
 
-[node name="Button" type="Button" parent="."]
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Mute" type="Button" parent="Menu"]
+layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -53.0
+offset_left = 1827.0
+offset_right = 1880.0
 offset_bottom = 31.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 2
 toggle_mode = true
 text = "MUTE"
-
-[node name="Menu" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="MapSize" type="LineEdit" parent="Menu"]
 layout_mode = 0
@@ -202,7 +204,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Visszalépés"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Menu/Mute" to="." method="_on_button_pressed"]
 [connection signal="text_changed" from="Menu/MapSize" to="." method="_on_map_size_text_changed"]
 [connection signal="text_changed" from="Menu/MapSize" to="Menu/MapSize" method="_on_text_changed"]
 [connection signal="pressed" from="Menu/StartGame" to="." method="_on_start_game_pressed"]
