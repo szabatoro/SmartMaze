@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm56df5yvkrx4"]
+
+[ext_resource type="Script" path="res://scoreboardscripts/save_leaderboard.gd" id="1_8b4rk"]
+
+[node name="Leaderboard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8b4rk")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -71.5
+offset_top = 224.0
+offset_right = 71.5
+offset_bottom = 247.0
+grow_horizontal = 2
+text = "Elért eredményed:"
+
+[node name="Name" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.5313
+offset_top = 272.0
+offset_right = 33.5313
+offset_bottom = 303.0
+grow_horizontal = 2
+max_length = 100
+expand_to_text_length = true
+
+[node name="Submit_for_scoreboard" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -4.0
+offset_top = 336.0
+offset_right = 4.0
+offset_bottom = 344.0
+grow_horizontal = 2
+text = "Mentés az eredményjelzőre"
+
+[node name="Unsuccess" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -71.5
+offset_top = 376.0
+offset_right = 71.5
+offset_bottom = 399.0
+grow_horizontal = 2
+text = "Sikertelen mentési kísérlet. :("
+
+[connection signal="text_changed" from="Name" to="." method="_on_name_text_changed"]
+[connection signal="pressed" from="Submit_for_scoreboard" to="." method="_on_submit_for_scoreboard_pressed"]

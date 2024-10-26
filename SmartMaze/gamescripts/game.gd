@@ -27,7 +27,8 @@ func _process(delta):
 	# ha elfogynak a lépések, újratölti a pályát
 	if steps == 0:
 		Engine.time_scale = 0
-		$PauseMenu.show()
+		# $PauseMenu.show()
+		get_tree().change_scene_to_file("res://save_leaderboard.tscn")
 		if !calced:
 			calced = true
 			AudioPlayer.stop_game_music()
@@ -81,7 +82,9 @@ func _on_restart_pressed():
 # kilépés
 func _on_exit_pressed():
 	AudioPlayer.play_fx(Global.menu_button_sound)
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://save_leaderboard.tscn")
+	#get_tree().save_leaderboard()
+	#get_tree().menu()
 
 #továbblépés a következő pályára
 func _on_continue_pressed():

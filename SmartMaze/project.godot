@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://global.gd"
 AudioPlayer="*res://audio_player.tscn"
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 [display]
 
@@ -29,6 +30,10 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="Maze"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/silent_wolf/plugin.cfg")
 
 [input]
 
