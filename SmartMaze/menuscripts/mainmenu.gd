@@ -45,3 +45,7 @@ func _on_button_pressed():
 	#var temp = $myStreamPlayer2D.get_playback_position()
 	AudioPlayer.play_fx(Global.menu_button_sound)
 	AudioPlayer.toggle_menu_music()
+
+
+func _on_scoreboard_pressed():
+	get_tree().change_scene_to_file("res://scoreboardscripts/scoreboard.tscn")

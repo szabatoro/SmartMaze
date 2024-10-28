@@ -21,3 +21,5 @@ const menu_button_sound = preload("res://assets/audio/button-4-sound-menu.wav")
 const game_lose = preload("res://assets/audio/game-fail.wav")
 const game_win = preload("res://assets/audio/game_win.wav")
 const grass_step = preload("res://assets/audio/grass_step.wav")
+
+var scoreboard_list = []

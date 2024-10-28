@@ -81,7 +81,7 @@ func _on_restart_pressed():
 # kilépés
 func _on_exit_pressed():
 	AudioPlayer.play_fx(Global.menu_button_sound)
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://scoreboardscripts/scoreboard.tscn")
 
 #továbblépés a következő pályára
 func _on_continue_pressed():
@@ -98,5 +98,5 @@ func _on_continue_pressed():
 func _on_back_to_menu_pressed():
 	AudioPlayer.play_fx(Global.menu_button_sound)
 	AudioPlayer.stop_game_music()
-	get_tree().change_scene_to_file("res://menu.tscn")
+	get_tree().change_scene_to_file("res://scoreboardscripts/scoreboard.tscn")
 	
