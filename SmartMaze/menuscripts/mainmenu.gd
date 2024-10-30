@@ -10,8 +10,8 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+#func _process(delta):
+#	pass
 
 func show_and_hide(first, second):
 	first.show()
@@ -21,7 +21,6 @@ func _on_start_game_pressed():
 	get_tree().change_scene_to_file("res://game.tscn")
 	AudioPlayer.play_fx(Global.menu_button_sound)
 	AudioPlayer.stop_menu_music()
-	
 
 func _on_settings_pressed():
 	AudioPlayer.play_fx(Global.menu_button_sound)
@@ -38,6 +37,7 @@ func _on_quit_game_pressed():
 
 
 func _on_back_from_options_pressed():
+	AudioPlayer.play_fx(Global.menu_button_sound)
 	show_and_hide(menu,options)
 
 
@@ -48,4 +48,5 @@ func _on_button_pressed():
 
 
 func _on_scoreboard_pressed():
+	AudioPlayer.play_fx(Global.menu_button_sound)
 	get_tree().change_scene_to_file("res://scoreboardscripts/scoreboard.tscn")

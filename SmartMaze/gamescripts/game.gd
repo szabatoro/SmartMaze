@@ -12,7 +12,7 @@ var calced = false #szükséges, hogy a _process-ben behívott pontszámítás n
 
 func get_steps():
 	var msize = Global.mapsize
-	return msize*msize/4
+	return msize*msize/4.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,7 +22,7 @@ func _ready():
 	AudioPlayer.play_game_music()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	
 	# ha elfogynak a lépések, újratölti a pályát
 	if steps == 0:
@@ -31,7 +31,7 @@ func _process(delta):
 		if !calced:
 			calced = true
 			AudioPlayer.stop_game_music()
-			AudioPlayer.play_fx(Global.game_lose,-10)
+			AudioPlayer.play_fx(Global.game_lose,Global.game_lose_sound_volume)
 		#steps = start_steps
 		#get_tree().reload_current_scene()		
 	# Ha a játékos eléri a célt, a pálya végetér, új pálya indul (erősen félkész)

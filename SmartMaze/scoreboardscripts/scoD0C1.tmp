@@ -60,7 +60,6 @@ placeholder_text = "Felhasználónév"
 alignment = 1
 
 [node name="Points" type="LineEdit" parent="HBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Save" type="Button" parent="HBoxContainer"]

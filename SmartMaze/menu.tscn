@@ -60,6 +60,7 @@ offset_bottom = 586.0
 text = "Kilépés"
 
 [node name="Scoreboard" type="Button" parent="Menu"]
+layout_mode = 0
 offset_left = 919.0
 offset_top = 599.0
 offset_right = 1032.0
