@@ -65,7 +65,7 @@ func toggle_game_music():
 		game_music_player.seek(temp)
 
 # Effekt lejátszása
-func play_fx(sound: AudioStream, volume: float = -10.0):
+func play_fx(sound: AudioStream, volume: float = Global.fx_audio_volume):
 	var fx_player = AudioStreamPlayer.new()
 	add_child(fx_player)
 	fx_player.stream = sound
