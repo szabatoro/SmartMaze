@@ -98,5 +98,8 @@ func _on_continue_pressed():
 func _on_back_to_menu_pressed():
 	AudioPlayer.play_fx(Global.menu_button_sound)
 	AudioPlayer.stop_game_music()
+	if Engine.time_scale == 0:
+		Engine.time_scale = 1
 	get_tree().change_scene_to_file("res://menu.tscn")
+	
 	
