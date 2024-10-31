@@ -26,7 +26,6 @@ func _ready():
 	# elhelyezi a játékost a kezdőpontban
 	starting_position()
 
-
 var moving = false
 var sprint:float
 # Called every frame. 'delta' is the elapsed time since the previous frame.

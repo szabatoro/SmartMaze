@@ -13,6 +13,9 @@
 script = ExtResource("1_d1m56")
 tilemap = NodePath("Map")
 
+[node name="DarkMap" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
 [node name="Map" parent="." instance=ExtResource("1_aqp5q")]
 position = Vector2(0.00012207, 6.10352e-05)
 

@@ -20,6 +20,10 @@ func _ready():
 	start_steps = get_steps()
 	steps = start_steps
 	AudioPlayer.play_game_music()
+	var starting_visibility = Global.mapsize
+	$Player/ViewField.texture_scale = starting_visibility
+	$Player/ViewField/AnimationPlayer.get_animation("shrink_visibility").track_set_key_value(0,0,starting_visibility)
+	$Player/ViewField/AnimationPlayer.play("shrink_visibility")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
