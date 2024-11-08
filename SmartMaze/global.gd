@@ -2,6 +2,9 @@
 
 extends Node
 
+# A mentésfájl elérési útja
+var save_path = "user://savefile.save"
+
 # menüben megadott pályaméret
 var mapsize_setter
 

@@ -167,5 +167,5 @@ text = "Folytatás!"
 [connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="PauseMenu/Menu" to="." method="_on_back_to_menu_pressed"]
 [connection signal="pressed" from="PauseMenu/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="MapEnd/Menu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="MapEnd/Menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="MapEnd/Continue" to="." method="_on_continue_pressed"]

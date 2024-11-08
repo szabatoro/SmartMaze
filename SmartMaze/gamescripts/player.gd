@@ -75,8 +75,7 @@ func move(direction:Vector2i):
 func move_end():
 	moving = false #abbahagytuk a mozgást
 	$AnimatedSprite2D.pause() #abbahagytuk az animációt
-	
-	
+
 	# mivel a tilemap koordinátája lokális a player pedig globális, ezért át kell alakítanunk
 	# globálissá a map_to_local függvénnyel
 	#self.global_position = tilemap.map_to_local(current_tile)
