@@ -69,8 +69,8 @@ func win_screen():
 	var current_score = ceil($Timer.time_left) + steps
 	if !calced:
 		progress_the_game(current_score)
+		AudioPlayer.play_fx(Global.game_win)
 		calced = true
-	AudioPlayer.play_fx(Global.game_win)
 	$MapEnd.show()
 	$MapEnd/Score.text = str(current_score)
 	$MapEnd/TotalScore.text = str(Global.score)
