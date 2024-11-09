@@ -24,7 +24,3 @@ func _ready():
 	var zoom_vector = change_zoomlevel(viewport_size, tile_size, tilemap_size)
 	# Elvégzi a nagyítást
 	set_zoom(zoom_vector)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

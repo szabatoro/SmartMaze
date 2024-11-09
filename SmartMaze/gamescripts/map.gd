@@ -118,7 +118,3 @@ func _ready():
 	maze_frame(s)
 	ModRecDiv(0, s - 1, 0, s - 1, true)
 	mapgen(Maze)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

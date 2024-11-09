@@ -28,36 +28,44 @@ text = "MUTE"
 
 [node name="MapSize" type="LineEdit" parent="Menu"]
 layout_mode = 0
-offset_left = 797.0
-offset_top = 411.0
-offset_right = 1150.0
-offset_bottom = 442.0
+offset_left = 808.0
+offset_top = 416.0
+offset_right = 1161.0
+offset_bottom = 447.0
 placeholder_text = "Első pályaméret (10)"
 alignment = 1
 
 [node name="StartGame" type="Button" parent="Menu"]
 layout_mode = 0
-offset_left = 919.0
-offset_top = 458.0
-offset_right = 1032.0
-offset_bottom = 489.0
-text = "Játék indítása"
+offset_left = 856.0
+offset_top = 496.0
+offset_right = 1120.0
+offset_bottom = 527.0
+text = "Új játék indítása"
 
 [node name="Settings" type="Button" parent="Menu"]
 layout_mode = 0
-offset_left = 919.0
-offset_top = 497.0
-offset_right = 1032.0
-offset_bottom = 528.0
+offset_left = 856.0
+offset_top = 536.0
+offset_right = 1120.0
+offset_bottom = 567.0
 text = "Beállítások"
 
 [node name="QuitGame" type="Button" parent="Menu"]
 layout_mode = 0
-offset_left = 939.0
-offset_top = 539.0
-offset_right = 1012.0
-offset_bottom = 586.0
+offset_left = 856.0
+offset_top = 576.0
+offset_right = 1120.0
+offset_bottom = 607.0
 text = "Kilépés"
+
+[node name="ContinueGame" type="Button" parent="Menu"]
+layout_mode = 0
+offset_left = 856.0
+offset_top = 456.0
+offset_right = 1120.0
+offset_bottom = 488.0
+text = "Játék folytatása"
 
 [node name="Options" type="Control" parent="."]
 visible = false
@@ -78,10 +86,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -175.0
-offset_top = -98.0
-offset_right = 175.0
-offset_bottom = 98.0
+offset_left = -200.0
+offset_top = -131.0
+offset_right = 200.0
+offset_bottom = 172.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -198,6 +206,11 @@ max_value = 1.0
 step = 0.001
 value = 1.0
 
+[node name="SaveDelete" type="Button" parent="Options/OptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Mentett játék törlése"
+
 [node name="BackFromOptions" type="Button" parent="Options/OptionsContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -214,6 +227,7 @@ text = "Visszalépés"
 [connection signal="pressed" from="Menu/QuitGame" to="." method="_on_quit_game_pressed"]
 [connection signal="pressed" from="Menu/QuitGame" to="Menu/StartGame" method="_on_quit_game_pressed"]
 [connection signal="pressed" from="Menu/QuitGame" to="Menu/QuitGame" method="_on_pressed"]
+[connection signal="pressed" from="Menu/ContinueGame" to="." method="_on_continue_game_pressed"]
 [connection signal="toggled" from="Options/OptionsContainer/Video/Checks/FullScreen" to="Options" method="_on_full_screen_toggled"]
 [connection signal="toggled" from="Options/OptionsContainer/Video/Checks/Borderless" to="Options" method="_on_borderless_toggled"]
 [connection signal="toggled" from="Options/OptionsContainer/Video/Checks/VSync" to="Options" method="_on_v_sync_toggled"]
@@ -221,5 +235,6 @@ text = "Visszalépés"
 [connection signal="value_changed" from="Options/OptionsContainer/Audio/Slider/Master" to="Options" method="_on_master_value_changed"]
 [connection signal="value_changed" from="Options/OptionsContainer/Audio/Slider/Music" to="Options" method="_on_music_value_changed"]
 [connection signal="value_changed" from="Options/OptionsContainer/Audio/Slider/FX" to="Options" method="_on_fx_value_changed"]
+[connection signal="pressed" from="Options/OptionsContainer/SaveDelete" to="." method="_on_save_delete_pressed"]
 [connection signal="pressed" from="Options/OptionsContainer/BackFromOptions" to="." method="_on_back_from_options_pressed"]
 [connection signal="pressed" from="Options/OptionsContainer/BackFromOptions" to="Options" method="_on_back_from_options_pressed"]
