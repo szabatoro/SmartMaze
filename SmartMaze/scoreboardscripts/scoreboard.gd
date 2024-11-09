@@ -8,7 +8,7 @@ func _ready():
 	update_scoreboard()
 	AudioPlayer.play_menu_music()
 	$HBoxContainer/Points.text = "0"
-	if elerteredmeny != 0 and Global.scoreboard_saved_first == false:
+	if elerteredmeny != 0:
 		$Score.text = $Score.text + str(elerteredmeny)
 		
 	else:
@@ -67,12 +67,14 @@ func _on_save_button_pressed():
 		# ha sikerült menteni az adatot
 		$HBoxContainer.hide()
 		$Name_l.text = $HBoxContainer/Name.text
-		Global.scoreboard_saved_first = true
+		savedataclear()
+		setdefaultglobal()
 		$Name_l.show()
 	
-	var seconds = 5
+	var seconds = 3
 	await get_tree().create_timer(seconds).timeout
 	update_scoreboard()
+	
 
 
 # A beérkező adatokat kiírjuk a konzolra
@@ -155,3 +157,17 @@ func _on_cheat_button_pressed():
 		$HBoxContainer.show()
 	else:
 		scoreboard_cheat_button_pressed += 1
+		
+		
+func savedataclear():
+	if FileAccess.file_exists(Global.save_path):
+		DirAccess.remove_absolute(Global.save_path)
+		#get_node("Options/OptionsContainer/SaveDelete").text = "Mentés törölve."
+	else:
+		#get_node("Options/OptionsContainer/SaveDelete").text = "Nincs előző mentett játék."
+		return
+
+func setdefaultglobal():
+	Global.mapsize = 10
+	Global.waittime = 20.0
+	Global.score = 0
