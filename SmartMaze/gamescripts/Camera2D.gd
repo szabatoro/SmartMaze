@@ -25,6 +25,3 @@ func _ready():
 	# Elvégzi a nagyítást
 	set_zoom(zoom_vector)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

@@ -1,23 +1,49 @@
-[gd_scene load_steps=9 format=3 uid="uid://ns6o51gahc2n"]
+[gd_scene load_steps=13 format=3 uid="uid://ns6o51gahc2n"]
 
 [ext_resource type="PackedScene" uid="uid://b0jp7ff1hohqa" path="res://map.tscn" id="1_aqp5q"]
 [ext_resource type="Script" path="res://gamescripts/game.gd" id="1_d1m56"]
+[ext_resource type="Texture2D" uid="uid://gr8xbqwtrfex" path="res://assets/SM_Ground.png" id="3_45eua"]
 [ext_resource type="PackedScene" uid="uid://cl0xgmev7ykwe" path="res://player.tscn" id="3_c8qds"]
 [ext_resource type="Script" path="res://gamescripts/Camera2D.gd" id="3_t3d7b"]
+[ext_resource type="Script" path="res://gamescripts/background.gd" id="4_6qa5q"]
 [ext_resource type="Script" path="res://gamescripts/Stepcounter.gd" id="5_i4rt5"]
 [ext_resource type="Script" path="res://gamescripts/Mapcounter.gd" id="6_bfyhh"]
 [ext_resource type="Script" path="res://gamescripts/Timer.gd" id="7_hsroa"]
 [ext_resource type="Texture2D" uid="uid://dw6etidvxy2j0" path="res://assets/SM_Menu_Logo.png" id="8_y4p7w"]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r1xba"]
+texture = ExtResource("3_45eua")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_khgl1"]
+sources/0 = SubResource("TileSetAtlasSource_r1xba")
+
 [node name="Game" type="Node2D" node_paths=PackedStringArray("tilemap")]
 script = ExtResource("1_d1m56")
 tilemap = NodePath("Map")
 
+[node name="DarkMap" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
 [node name="Map" parent="." instance=ExtResource("1_aqp5q")]
 position = Vector2(0.00012207, 6.10352e-05)
 
-[node name="Background" type="TileMap" parent="."]
+[node name="Background" type="TileMap" parent="." node_paths=PackedStringArray("tilemap")]
+position = Vector2(-80, 0)
+tile_set = SubResource("TileSet_khgl1")
 format = 2
+layer_0/z_index = -1
+script = ExtResource("4_6qa5q")
+tilemap = NodePath("../Map")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tilemap")]
 script = ExtResource("3_t3d7b")
@@ -165,5 +191,5 @@ text = "Folytatás!"
 [connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="PauseMenu/Menu" to="." method="_on_back_to_menu_pressed"]
 [connection signal="pressed" from="PauseMenu/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="MapEnd/Menu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="MapEnd/Menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="MapEnd/Continue" to="." method="_on_continue_pressed"]

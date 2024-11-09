@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://cl0xgmev7ykwe"]
+[gd_scene load_steps=23 format=3 uid="uid://cl0xgmev7ykwe"]
 
 [ext_resource type="Script" path="res://gamescripts/player.gd" id="1_u2xny"]
+[ext_resource type="Texture2D" uid="uid://5pp6eqk0avwl" path="res://assets/viewfield.png" id="3_8vost"]
 [ext_resource type="Texture2D" uid="uid://dij1olul0btnu" path="res://assets/Jatekos.png" id="3_c2hdj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m3r3a"]
@@ -153,6 +154,43 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="Animation" id="Animation_2i53j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_mqk2s"]
+resource_name = "shrink_visibility"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 5),
+"transitions": PackedFloat32Array(0.196146, 1),
+"update": 0,
+"values": [1.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2nq2e"]
+_data = {
+"RESET": SubResource("Animation_2i53j"),
+"shrink_visibility": SubResource("Animation_mqk2s")
+}
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(44, 42)
 script = ExtResource("1_u2xny")
@@ -165,3 +203,11 @@ sprite_frames = SubResource("SpriteFrames_tdh6u")
 animation = &"moveU"
 autoplay = "idleD"
 frame_progress = 0.989359
+
+[node name="ViewField" type="PointLight2D" parent="."]
+texture = ExtResource("3_8vost")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ViewField"]
+libraries = {
+"": SubResource("AnimationLibrary_2nq2e")
+}
