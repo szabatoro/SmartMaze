@@ -22,8 +22,8 @@ func load_game():
 	file.close()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+#func _process(delta):
+#	pass
 
 func show_and_hide(first, second):
 	first.show()
@@ -56,6 +56,7 @@ func _on_quit_game_pressed():
 
 # Visszalépés a beállításokból
 func _on_back_from_options_pressed():
+	AudioPlayer.play_fx(Global.menu_button_sound)
 	show_and_hide(menu,options)
 
 
@@ -64,6 +65,10 @@ func _on_button_pressed():
 	AudioPlayer.play_fx(Global.menu_button_sound)
 	AudioPlayer.toggle_menu_music()
 
+
+func _on_scoreboard_pressed():
+	AudioPlayer.play_fx(Global.menu_button_sound)
+	get_tree().change_scene_to_file("res://scoreboardscripts/scoreboard.tscn")
 # Előző játék folytatása
 func _on_continue_game_pressed():
 	if FileAccess.file_exists(Global.save_path):

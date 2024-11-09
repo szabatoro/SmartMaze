@@ -110,6 +110,7 @@ theme_override_font_sizes/font_size = 40
 text = "Menübe"
 
 [node name="Exit" type="Button" parent="PauseMenu"]
+visible = false
 offset_left = 882.0
 offset_top = 742.0
 offset_right = 1103.0

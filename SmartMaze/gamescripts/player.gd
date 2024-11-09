@@ -29,7 +29,7 @@ func _ready():
 var moving = false
 var sprint:float
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if moving == false: #nem mozgunk 
 		# leolvassa a karakter jelenlegi pozícióját
 		current_position = self.global_position

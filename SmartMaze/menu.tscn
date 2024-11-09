@@ -59,6 +59,15 @@ offset_right = 1120.0
 offset_bottom = 607.0
 text = "Kilépés"
 
+
+[node name="Scoreboard" type="Button" parent="Menu"]
+layout_mode = 0
+offset_left = 919.0
+offset_top = 599.0
+offset_right = 1032.0
+offset_bottom = 630.0
+text = "Scoreboard"
+
 [node name="ContinueGame" type="Button" parent="Menu"]
 layout_mode = 0
 offset_left = 856.0
@@ -66,6 +75,7 @@ offset_top = 456.0
 offset_right = 1120.0
 offset_bottom = 488.0
 text = "Játék folytatása"
+
 
 [node name="Options" type="Control" parent="."]
 visible = false
@@ -227,7 +237,11 @@ text = "Visszalépés"
 [connection signal="pressed" from="Menu/QuitGame" to="." method="_on_quit_game_pressed"]
 [connection signal="pressed" from="Menu/QuitGame" to="Menu/StartGame" method="_on_quit_game_pressed"]
 [connection signal="pressed" from="Menu/QuitGame" to="Menu/QuitGame" method="_on_pressed"]
+
+[connection signal="pressed" from="Menu/Scoreboard" to="." method="_on_scoreboard_pressed"]
+
 [connection signal="pressed" from="Menu/ContinueGame" to="." method="_on_continue_game_pressed"]
+
 [connection signal="toggled" from="Options/OptionsContainer/Video/Checks/FullScreen" to="Options" method="_on_full_screen_toggled"]
 [connection signal="toggled" from="Options/OptionsContainer/Video/Checks/Borderless" to="Options" method="_on_borderless_toggled"]
 [connection signal="toggled" from="Options/OptionsContainer/Video/Checks/VSync" to="Options" method="_on_v_sync_toggled"]

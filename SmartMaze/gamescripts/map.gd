@@ -11,8 +11,8 @@ const WALL = 1
 var Maze = []
 
 # Random funkció alsó és felső határral
-func mrandom(min, max):
-	return randi() % (max - min + 1) + min
+func mrandom(_min, _max):
+	return randi() % (_max - _min + 1) + _min
 
 # A mátrix előkészítése adott mérettel
 func allocate_maze(s):
@@ -118,3 +118,4 @@ func _ready():
 	maze_frame(s)
 	ModRecDiv(0, s - 1, 0, s - 1, true)
 	mapgen(Maze)
+
