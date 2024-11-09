@@ -32,9 +32,7 @@ func show_and_hide(first, second):
 # Új játék kezdése
 func _on_start_game_pressed():
 	# Újrainicializáljuk a global.gd-t kezdőadatokkal, illetve a megadott pályamérettel, ha az van
-	if Global.mapsize_setter != null:
-		Global.mapsize = Global.mapsize_setter
-	else:
+	if !Global.mapsize_setter != "":
 		Global.mapsize = 10
 	Global.waittime = 20.0
 	Global.score = 0
