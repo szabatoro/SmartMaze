@@ -6,6 +6,7 @@ extends Node2D
 @export var tilemap: TileMap
 var start_steps
 var steps
+var starting_visibility
 var calced = false #szükséges, hogy a _process-ben behívott pontszámítás ne 
 # menjen végbe egynél többször
 
@@ -19,15 +20,14 @@ func _ready():
 	start_steps = get_steps()
 	steps = start_steps
 	AudioPlayer.play_game_music()
-	var starting_visibility = Global.mapsize
+	starting_visibility = Global.mapsize
+	$Player.set_process(false) # nem mozgathatjuk a játékost
 	$Player/ViewField.texture_scale = starting_visibility
-	$Player/ViewField/AnimationPlayer.get_animation("shrink_visibility").track_set_key_value(0,0,starting_visibility)
-	$Player/ViewField/AnimationPlayer.play("shrink_visibility")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	
-	# ha elfogynak a lépések, újratölti a pályát
+	# ha elfogynak a lépések, feldobja a pause menüt
 	if steps == 0:
 		Engine.time_scale = 0
 		$PauseMenu.show()
@@ -37,7 +37,7 @@ func _process(_delta):
 			AudioPlayer.play_fx(Global.game_lose,Global.game_lose_sound_volume)
 		#steps = start_steps
 		#get_tree().reload_current_scene()		
-	# Ha a játékos eléri a célt, a pálya végetér, új pálya indul (erősen félkész)
+	# Ha a játékos eléri a célt, a pálya végetér, megjelenik a win screen
 	if $Player.global_position == tilemap.map_to_local(tilemap.get_used_cells_by_id(0,-1,Vector2i(1,1),-1).back()):
 		
 		win_screen()
@@ -133,3 +133,12 @@ func save_game():
 	
 	# A műveletek után bezárjuk a fájlt
 	file.close()
+
+# Mikor az első pár másodperc lejár, a mapot lesötétíjük és a karakter irányíthatóvá válik
+func _on_first_timer_timeout():
+	$Timer.paused = false # elindítjuk a visszaszámlálást
+	$HUD/FirstTimerLabel.hide()
+	$Player/ViewField/AnimationPlayer.get_animation("shrink_visibility").track_set_key_value(0,0,starting_visibility)
+	$Player/ViewField/AnimationPlayer.get_animation("shrink_visibility").track_set_key_transition(0,0,0.06)
+	$Player/ViewField/AnimationPlayer.play("shrink_visibility")
+	$Player.set_process(true) # a játékos mozoghat
