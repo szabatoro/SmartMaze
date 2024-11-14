@@ -12,9 +12,5 @@ func _ready():
 	# legeneráljuk a háttér tileokat
 	fill_background()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func _on_background_timer_timeout():
 	fill_background()
