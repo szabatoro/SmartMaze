@@ -32,8 +32,7 @@ func show_and_hide(first, second):
 # Új játék kezdése
 func _on_start_game_pressed():
 	# Újrainicializáljuk a global.gd-t kezdőadatokkal, illetve a megadott pályamérettel, ha az van
-	if !Global.mapsize_setter != 10:
-		Global.mapsize = 10
+	Global.mapsize = 10
 	Global.waittime = 20.0
 	Global.score = 0
 	get_tree().change_scene_to_file("res://game.tscn")
