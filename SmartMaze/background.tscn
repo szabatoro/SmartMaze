@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bquet8edprf6t"]
+
+[ext_resource type="Texture2D" uid="uid://gr8xbqwtrfex" path="res://assets/SM_Ground.png" id="1_sby5i"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r1xba"]
+texture = ExtResource("1_sby5i")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_khgl1"]
+sources/0 = SubResource("TileSetAtlasSource_r1xba")
+
+[node name="Background" type="TileMap"]
+position = Vector2(-80, 0)
+tile_set = SubResource("TileSet_khgl1")
+format = 2
+layer_0/z_index = -1
