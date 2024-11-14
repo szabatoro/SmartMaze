@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bsrid3he3em86"]
+
+[ext_resource type="Texture2D" uid="uid://dwk1f5wvns88c" path="res://assets/buttons/LongBoxHover.png" id="1_syipr"]
+[ext_resource type="Texture2D" uid="uid://j1afko17bytd" path="res://assets/buttons/LongBoxDefault.png" id="2_3mpoi"]
+[ext_resource type="Texture2D" uid="uid://cl6fxxdjquukg" path="res://assets/buttons/LongBoxClick.png" id="3_u6k6y"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ucgph"]
+texture = ExtResource("3_u6k6y")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wge8l"]
+texture = ExtResource("1_syipr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ss3i1"]
+texture = ExtResource("2_3mpoi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l348n"]
+texture = ExtResource("3_u6k6y")
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxTexture_ucgph")
+Button/styles/hover = SubResource("StyleBoxTexture_wge8l")
+Button/styles/normal = SubResource("StyleBoxTexture_ss3i1")
+Button/styles/pressed = SubResource("StyleBoxTexture_l348n")
