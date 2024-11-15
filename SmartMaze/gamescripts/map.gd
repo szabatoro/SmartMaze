@@ -96,9 +96,40 @@ func mapgen(array):
 					celltype = Vector2i(2,0)
 				elif i == array.size()-1 and j == array.size()-1:
 					celltype = Vector2i(3,0)
-				else:
-					celltype = Vector2i(0, 1)
-			else:
+				else: 
+					if (i>0 and array[i-1][j] == 1 )and (j>0 and array[i][j-1] == 1 )and(i<array.size()-1 and array[i+1][j] == 1 )and(j<array.size()-1 and array[i][j+1] == 1):
+						celltype = Vector2i(0, 7) # 4 ágú
+					elif (i>0 and array[i-1][j] == 1 )and (j>0 and array[i][j-1] == 1 )and(i<array.size()-1 and array[i+1][j] == 1 ):
+						celltype = Vector2i(3, 6) # 3 ágú
+					elif (i>0 and array[i-1][j] == 1 )and (j>0 and array[i][j-1] == 1 )and(j<array.size()-1 and array[i][j+1] == 1):
+						celltype = Vector2i(0, 6) # 3 ágú
+					elif (i>0 and array[i-1][j] == 1 )and(i<array.size()-1 and array[i+1][j] == 1 )and(j<array.size()-1 and array[i][j+1] == 1):
+						celltype = Vector2i(1, 6) # 3 ágú
+					elif (j>0 and array[i][j-1] == 1 )and(i<array.size()-1 and array[i+1][j] == 1 )and(j<array.size()-1 and array[i][j+1] == 1):
+						celltype = Vector2i(2, 6) # 3 ágú
+					elif (i<array.size()-1 and array[i+1][j] == 1 )and(j<array.size()-1 and array[i][j+1] == 1):
+						celltype = Vector2i(1, 4) # 2 ágú sarok
+					elif (j>0 and array[i][j-1] == 1 ) and (i<array.size()-1 and array[i+1][j] == 1 ):
+						celltype = Vector2i(2, 4) # 2 ágú sarok
+					elif (i>0 and array[i-1][j] == 1 ) and (j>0 and array[i][j-1] == 1 ):
+						celltype = Vector2i(3, 4) # 2 ágú sarok
+					elif (i>0 and array[i-1][j] == 1 ) and (j<array.size()-1 and array[i][j+1] == 1):
+						celltype = Vector2i(0, 4) # 2 ágú sarok
+					elif (i>0 and array[i-1][j] == 1 ) and (i<array.size()-1 and array[i+1][j] == 1 ):
+						celltype = Vector2i(0, 5) # 2 ágú egyenes
+					elif (j>0 and array[i][j-1] ==1 ) and (j<array.size()-1 and array[i][j+1] == 1):
+						celltype = Vector2i(1, 5) # 2 ágú egyenes
+					elif (i<array.size()-1 and array[i+1][j] == 1 ):
+						celltype = Vector2i(2, 3) # 1 ágú
+					elif (i>0 and array[i-1][j] == 1 ):
+						celltype = Vector2i(0, 3) # 1 ágú
+					elif (j<array.size()-1 and array[i][j+1] == 1):
+						celltype = Vector2i(1, 3) # 1 ágú
+					elif (j>0 and array[i][j-1] ==1 ):
+						celltype = Vector2i(3, 3) # 1 ágú
+					else:
+						celltype = Vector2i(0, 1)
+			else: 
 				celltype = Vector2i(1, 1)
 			self.set_cell(0, Vector2i(j, i), 0, celltype)
 
