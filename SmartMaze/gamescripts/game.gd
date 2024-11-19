@@ -39,7 +39,6 @@ func _process(_delta):
 		#get_tree().reload_current_scene()		
 	# Ha a játékos eléri a célt, a pálya végetér, megjelenik a win screen
 	if $Player.global_position == tilemap.map_to_local(tilemap.get_used_cells_by_id(0,-1,Vector2i(1,1),-1).back()):
-		
 		win_screen()
 	#pause menu
 	if Input.is_action_just_pressed("escape"):
@@ -93,17 +92,18 @@ func _on_restart_pressed():
 # kilépés
 func _on_exit_pressed():
 	AudioPlayer.play_fx(Global.menu_button_sound)
-	get_tree().change_scene_to_file("res://scoreboardscripts/scoreboard.tscn")
+	get_tree().change_scene_to_file("res://menu.tscn")
 
 #továbblépés a következő pályára
 func _on_continue_pressed():
 	Engine.time_scale = 1
-	#Global.mapsize += 4
-	#Global.waittime += 10.0
 	steps = start_steps
 	AudioPlayer.play_fx(Global.menu_button_sound)
 	save_game()
-	get_tree().reload_current_scene()
+	if Global.level < 2:
+		get_tree().reload_current_scene()
+	else:
+		get_tree().change_scene_to_file("res://outro.tscn")
 
 # Szünet menüből visszalépés a főmenübe
 func _on_back_to_menu_pressed():
