@@ -1,39 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdg7rf0xbklb8"]
+[gd_scene load_steps=6 format=3 uid="uid://bdg7rf0xbklb8"]
 
 [ext_resource type="Script" path="res://menuscripts/mainmenu.gd" id="1_eg0k6"]
 [ext_resource type="Script" path="res://menuscripts/settings.gd" id="2_ah383"]
+[ext_resource type="PackedScene" uid="uid://bquet8edprf6t" path="res://background.tscn" id="2_n0od7"]
+[ext_resource type="Script" path="res://menuscripts/menu_background.gd" id="3_01pvy"]
+[ext_resource type="Texture2D" uid="uid://dw6etidvxy2j0" path="res://assets/SM_Menu_Logo.png" id="3_jasd7"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_eg0k6")
 
+[node name="Background" parent="." instance=ExtResource("2_n0od7")]
+script = ExtResource("3_01pvy")
+
+[node name="BackgroundTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = 171.0
+offset_bottom = 171.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Menu"]
+position = Vector2(996, 213)
+scale = Vector2(7.92188, 7.34375)
+texture = ExtResource("3_jasd7")
 
 [node name="Mute" type="Button" parent="Menu"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1827.0
-offset_right = 1880.0
-offset_bottom = 31.0
+offset_left = 1865.0
+offset_top = -169.0
+offset_right = 1918.0
+offset_bottom = -138.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 2
 toggle_mode = true
 text = "MUTE"
-
-[node name="MapSize" type="LineEdit" parent="Menu"]
-layout_mode = 0
-offset_left = 808.0
-offset_top = 416.0
-offset_right = 1161.0
-offset_bottom = 447.0
-placeholder_text = "Első pályaméret (10)"
-alignment = 1
 
 [node name="StartGame" type="Button" parent="Menu"]
 layout_mode = 0
@@ -54,17 +61,17 @@ text = "Beállítások"
 [node name="QuitGame" type="Button" parent="Menu"]
 layout_mode = 0
 offset_left = 856.0
-offset_top = 576.0
+offset_top = 615.0
 offset_right = 1120.0
-offset_bottom = 607.0
+offset_bottom = 646.0
 text = "Kilépés"
 
 [node name="Scoreboard" type="Button" parent="Menu"]
 layout_mode = 0
-offset_left = 931.0
-offset_top = 616.0
-offset_right = 1044.0
-offset_bottom = 647.0
+offset_left = 857.0
+offset_top = 575.0
+offset_right = 1121.0
+offset_bottom = 606.0
 text = "Scoreboard"
 
 [node name="ContinueGame" type="Button" parent="Menu"]
@@ -225,9 +232,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Visszalépés"
 
+[connection signal="timeout" from="BackgroundTimer" to="Background" method="_on_background_timer_timeout"]
 [connection signal="pressed" from="Menu/Mute" to="." method="_on_button_pressed"]
-[connection signal="text_changed" from="Menu/MapSize" to="." method="_on_map_size_text_changed"]
-[connection signal="text_changed" from="Menu/MapSize" to="Menu/MapSize" method="_on_text_changed"]
 [connection signal="pressed" from="Menu/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="Menu/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Menu/Settings" to="Menu/Settings" method="_on_pressed"]

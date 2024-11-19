@@ -13,7 +13,7 @@ config_version=5
 config/name="Maze"
 run/main_scene="res://menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/Icon_3D.png"
 
 [autoload]
 
@@ -29,6 +29,10 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="Maze"
+
+[gui]
+
+theme/custom="res://theme.tres"
 
 [input]
 

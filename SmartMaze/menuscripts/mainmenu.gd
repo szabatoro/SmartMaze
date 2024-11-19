@@ -32,8 +32,7 @@ func show_and_hide(first, second):
 # Új játék kezdése
 func _on_start_game_pressed():
 	# Újrainicializáljuk a global.gd-t kezdőadatokkal, illetve a megadott pályamérettel, ha az van
-	if !Global.mapsize_setter != 10:
-		Global.mapsize = 10
+	Global.mapsize = 10
 	Global.waittime = 20.0
 	Global.score = 0
 	get_tree().change_scene_to_file("res://game.tscn")
@@ -44,10 +43,6 @@ func _on_start_game_pressed():
 func _on_settings_pressed():
 	AudioPlayer.play_fx(Global.menu_button_sound)
 	show_and_hide(options,menu)
-
-# A kezdő pályaméret megadása
-func _on_map_size_text_changed(new_text):
-	Global.mapsize = int(new_text)
 
 # Kilépés a játékból
 func _on_quit_game_pressed():
