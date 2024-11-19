@@ -17,6 +17,7 @@ func load_game():
 	Global.mapsize = file.get_var()
 	Global.score = file.get_var()
 	Global.waittime = file.get_var()
+	Global.level = file.get_var()
 	
 	# A műveletek után a fájlt bezárjuk
 	file.close()

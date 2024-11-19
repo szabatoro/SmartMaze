@@ -61,6 +61,8 @@ func progress_the_game(current_score):
 	Global.waittime += 10.0
 	# hozzáadjuk a pályán szerzett pontot az összpontszámhoz
 	Global.score += current_score
+	# lépünk a következő szintre
+	Global.level += 1
 
 # kiszámítjuk a jelenlegi pontot, az egész játék során szerzett pontot,
 # megjelenítjük a pályavégi összesítést
@@ -130,6 +132,7 @@ func save_game():
 	file.store_var(Global.mapsize)
 	file.store_var(Global.score)
 	file.store_var(Global.waittime)
+	file.store_var(Global.level)
 	
 	# A műveletek után bezárjuk a fájlt
 	file.close()
