@@ -104,18 +104,9 @@ func mapgen(array):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# a pálya mérete
-	var s
-	# ha nem adtunk meg méretet a főmenüben
-	if Global.mapsize_setter == null:
-		s = Global.mapsize
-	# ha de
-	else:
-		Global.mapsize = Global.mapsize_setter
-		s = Global.mapsize
 	await owner.ready
-	allocate_maze(s)
-	maze_frame(s)
-	ModRecDiv(0, s - 1, 0, s - 1, true)
+	allocate_maze(Global.mapsize)
+	maze_frame(Global.mapsize)
+	ModRecDiv(0, Global.mapsize - 1, 0, Global.mapsize - 1, true)
 	mapgen(Maze)
 
