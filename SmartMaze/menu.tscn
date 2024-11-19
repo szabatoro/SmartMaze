@@ -13,6 +13,7 @@ script = ExtResource("1_eg0k6")
 script = ExtResource("3_01pvy")
 
 [node name="BackgroundTimer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [node name="Menu" type="Control" parent="."]
@@ -22,7 +23,7 @@ offset_top = 171.0
 offset_bottom = 171.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Menu"]
-position = Vector2(996, 174)
+position = Vector2(996, 213)
 scale = Vector2(7.92188, 7.34375)
 texture = ExtResource("3_jasd7")
 
@@ -40,15 +41,6 @@ size_flags_horizontal = 8
 size_flags_vertical = 2
 toggle_mode = true
 text = "MUTE"
-
-[node name="MapSize" type="LineEdit" parent="Menu"]
-layout_mode = 0
-offset_left = 808.0
-offset_top = 384.0
-offset_right = 1161.0
-offset_bottom = 415.0
-placeholder_text = "Első pályaméret (10)"
-alignment = 1
 
 [node name="StartGame" type="Button" parent="Menu"]
 layout_mode = 0
@@ -242,8 +234,6 @@ text = "Visszalépés"
 
 [connection signal="timeout" from="BackgroundTimer" to="Background" method="_on_background_timer_timeout"]
 [connection signal="pressed" from="Menu/Mute" to="." method="_on_button_pressed"]
-[connection signal="text_changed" from="Menu/MapSize" to="." method="_on_map_size_text_changed"]
-[connection signal="text_changed" from="Menu/MapSize" to="Menu/MapSize" method="_on_text_changed"]
 [connection signal="pressed" from="Menu/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="Menu/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Menu/Settings" to="Menu/Settings" method="_on_pressed"]

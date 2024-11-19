@@ -44,10 +44,6 @@ func _on_settings_pressed():
 	AudioPlayer.play_fx(Global.menu_button_sound)
 	show_and_hide(options,menu)
 
-# A kezdő pályaméret megadása
-func _on_map_size_text_changed(new_text):
-	Global.mapsize = int(new_text)
-
 # Kilépés a játékból
 func _on_quit_game_pressed():
 	AudioPlayer.play_fx(Global.menu_button_sound)
