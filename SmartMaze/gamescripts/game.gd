@@ -73,6 +73,8 @@ func win_screen():
 		AudioPlayer.play_fx(Global.game_win)
 		calced = true
 	$MapEnd.show()
+	if Global.level == 3:
+		$MapEnd/Menu.visible = false
 	$MapEnd/Score.text = str(current_score)
 	$MapEnd/TotalScore.text = str(Global.score)
 
@@ -99,8 +101,8 @@ func _on_continue_pressed():
 	Engine.time_scale = 1
 	steps = start_steps
 	AudioPlayer.play_fx(Global.menu_button_sound)
-	save_game()
-	if Global.level < 2:
+	Global.save_game()
+	if Global.level < 3:
 		get_tree().reload_current_scene()
 	else:
 		get_tree().change_scene_to_file("res://outro.tscn")
@@ -119,23 +121,8 @@ func _on_menu_pressed():
 	AudioPlayer.stop_game_music()
 	if Engine.time_scale == 0:
 		Engine.time_scale = 1
-	save_game()
+	Global.save_game()
 	get_tree().change_scene_to_file("res://menu.tscn")
-
-	
-# Játékváltozók mentése egy bináris fájlba
-func save_game():
-	# Megnyissuk a fájlt
-	var file = FileAccess.open(Global.save_path, FileAccess.WRITE)
-
-	# Lementjük a menteni kívánt változókat
-	file.store_var(Global.mapsize)
-	file.store_var(Global.score)
-	file.store_var(Global.waittime)
-	file.store_var(Global.level)
-	
-	# A műveletek után bezárjuk a fájlt
-	file.close()
 
 # Mikor az első pár másodperc lejár, a mapot lesötétíjük és a karakter irányíthatóvá válik
 func _on_first_timer_timeout():
