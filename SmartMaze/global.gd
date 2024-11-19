@@ -37,3 +37,17 @@ const grass_step = preload("res://assets/audio/grass_step.wav")
 var scoreboard_list = []
 # 1 játék indítás után, csak egyszer lehet menteni scoreboardra.
 # var scoreboard_saved_first = false
+
+# Játékváltozók mentése egy bináris fájlba
+func save_game():
+	# Megnyissuk a fájlt
+	var file = FileAccess.open(Global.save_path, FileAccess.WRITE)
+
+	# Lementjük a menteni kívánt változókat
+	file.store_var(Global.mapsize)
+	file.store_var(Global.score)
+	file.store_var(Global.waittime)
+	file.store_var(Global.level)
+	
+	# A műveletek után bezárjuk a fájlt
+	file.close()
