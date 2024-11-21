@@ -39,7 +39,6 @@ func _process(_delta):
 		#get_tree().reload_current_scene()		
 	# Ha a játékos eléri a célt, a pálya végetér, megjelenik a win screen
 	if $Player.global_position == tilemap.map_to_local(tilemap.get_used_cells_by_id(0,-1,Vector2i(1,1),-1).back()):
-		
 		win_screen()
 	#pause menu
 	if Input.is_action_just_pressed("escape"):
@@ -61,6 +60,8 @@ func progress_the_game(current_score):
 	Global.waittime += 10.0
 	# hozzáadjuk a pályán szerzett pontot az összpontszámhoz
 	Global.score += current_score
+	# lépünk a következő szintre
+	Global.level += 1
 
 # kiszámítjuk a jelenlegi pontot, az egész játék során szerzett pontot,
 # megjelenítjük a pályavégi összesítést
@@ -72,6 +73,8 @@ func win_screen():
 		AudioPlayer.play_fx(Global.game_win)
 		calced = true
 	$MapEnd.show()
+	if Global.level == 3:
+		$MapEnd/Menu.visible = false
 	$MapEnd/Score.text = str(current_score)
 	$MapEnd/TotalScore.text = str(Global.score)
 
@@ -91,17 +94,18 @@ func _on_restart_pressed():
 # kilépés
 func _on_exit_pressed():
 	AudioPlayer.play_fx(Global.menu_button_sound)
-	get_tree().change_scene_to_file("res://scoreboardscripts/scoreboard.tscn")
+	get_tree().change_scene_to_file("res://menu.tscn")
 
 #továbblépés a következő pályára
 func _on_continue_pressed():
 	Engine.time_scale = 1
-	#Global.mapsize += 4
-	#Global.waittime += 10.0
 	steps = start_steps
 	AudioPlayer.play_fx(Global.menu_button_sound)
-	save_game()
-	get_tree().reload_current_scene()
+	Global.save_game()
+	if Global.level < 3:
+		get_tree().reload_current_scene()
+	else:
+		get_tree().change_scene_to_file("res://outro.tscn")
 
 # Szünet menüből visszalépés a főmenübe
 func _on_back_to_menu_pressed():
@@ -117,22 +121,8 @@ func _on_menu_pressed():
 	AudioPlayer.stop_game_music()
 	if Engine.time_scale == 0:
 		Engine.time_scale = 1
-	save_game()
+	Global.save_game()
 	get_tree().change_scene_to_file("res://menu.tscn")
-
-	
-# Játékváltozók mentése egy bináris fájlba
-func save_game():
-	# Megnyissuk a fájlt
-	var file = FileAccess.open(Global.save_path, FileAccess.WRITE)
-
-	# Lementjük a menteni kívánt változókat
-	file.store_var(Global.mapsize)
-	file.store_var(Global.score)
-	file.store_var(Global.waittime)
-	
-	# A műveletek után bezárjuk a fájlt
-	file.close()
 
 # Mikor az első pár másodperc lejár, a mapot lesötétíjük és a karakter irányíthatóvá válik
 func _on_first_timer_timeout():

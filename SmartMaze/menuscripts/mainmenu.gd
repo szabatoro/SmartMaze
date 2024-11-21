@@ -17,6 +17,7 @@ func load_game():
 	Global.mapsize = file.get_var()
 	Global.score = file.get_var()
 	Global.waittime = file.get_var()
+	Global.level = file.get_var()
 	
 	# A műveletek után a fájlt bezárjuk
 	file.close()
@@ -35,7 +36,7 @@ func _on_start_game_pressed():
 	Global.mapsize = 10
 	Global.waittime = 20.0
 	Global.score = 0
-	get_tree().change_scene_to_file("res://game.tscn")
+	get_tree().change_scene_to_file("res://intro.tscn")
 	AudioPlayer.play_fx(Global.menu_button_sound)
 	AudioPlayer.stop_menu_music()
 	
