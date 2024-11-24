@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ns6o51gahc2n"]
+[gd_scene load_steps=15 format=3 uid="uid://ns6o51gahc2n"]
 
 [ext_resource type="PackedScene" uid="uid://b0jp7ff1hohqa" path="res://map.tscn" id="1_aqp5q"]
 [ext_resource type="Script" path="res://gamescripts/game.gd" id="1_d1m56"]
@@ -9,8 +9,20 @@
 [ext_resource type="Script" path="res://gamescripts/Stepcounter.gd" id="5_i4rt5"]
 [ext_resource type="Script" path="res://gamescripts/Mapcounter.gd" id="6_bfyhh"]
 [ext_resource type="Texture2D" uid="uid://dw6etidvxy2j0" path="res://assets/SM_Menu_Logo.png" id="8_y4p7w"]
-[ext_resource type="Script" path="res://gamescripts/FirstTimerLabel.gd" id="9_3i6f4"]
+[ext_resource type="Script" path="res://gamescripts/BlackOutLabel.gd" id="9_3i6f4"]
 [ext_resource type="Script" path="res://Timer.gd" id="10_6rvc2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m451v"]
+font_size = 40
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uhfsn"]
+font_size = 40
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ueoxw"]
+font_size = 40
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("tilemap")]
 script = ExtResource("1_d1m56")
@@ -41,7 +53,11 @@ offset_top = 21.0
 offset_right = 1874.0
 offset_bottom = 78.0
 theme_override_font_sizes/font_size = 40
-text = "Lépések:"
+text = "LE:
+FEL:
+JOBBRA:
+BALRA:"
+label_settings = SubResource("LabelSettings_m451v")
 script = ExtResource("5_i4rt5")
 
 [node name="Mapcounter" type="Label" parent="HUD"]
@@ -51,19 +67,21 @@ offset_right = 304.0
 offset_bottom = 84.0
 theme_override_font_sizes/font_size = 40
 text = "Maradék idő: "
+label_settings = SubResource("LabelSettings_uhfsn")
 script = ExtResource("6_bfyhh")
 
-[node name="FirstTimerLabel" type="Label" parent="HUD"]
-offset_left = 1626.0
-offset_top = 991.0
-offset_right = 1859.0
-offset_bottom = 1074.0
+[node name="BlackOutLabel" type="Label" parent="HUD"]
+offset_left = 1624.0
+offset_top = 856.0
+offset_right = 1883.0
+offset_bottom = 969.0
 theme_override_font_sizes/font_size = 40
-text = "Belátási idő:
-"
+text = "JEGYEZD MEG
+ A PÁLYÁT!"
+label_settings = SubResource("LabelSettings_ueoxw")
 script = ExtResource("9_3i6f4")
 
-[node name="FirstTimer" type="Timer" parent="."]
+[node name="BlackoutTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 autostart = true
@@ -182,7 +200,7 @@ offset_bottom = 1055.0
 theme_override_font_sizes/font_size = 40
 text = "Folytatás!"
 
-[connection signal="timeout" from="FirstTimer" to="." method="_on_first_timer_timeout"]
+[connection signal="timeout" from="BlackoutTimer" to="." method="_on_blackout_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="HUD/Mapcounter" method="_on_timer_timeout"]
 [connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_restart_pressed"]
