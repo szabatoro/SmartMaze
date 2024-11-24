@@ -4,21 +4,28 @@ extends Node2D
 # @export var mapsize = 20 !!EZT FELVÁLTOTTA A GLOBAL.GD!!
 # A pálya, exportálva, hogy befolyásolhassuk az exportban megadott pálya asset méretét
 @export var tilemap: TileMap
-var start_steps
-var steps
+var steps_total
+var steps_up
+var steps_down
+var steps_left
+var steps_right
+var score_penalty = 0
 var starting_visibility
 var calced = false #szükséges, hogy a _process-ben behívott pontszámítás ne 
 # menjen végbe egynél többször
 
 func get_steps():
 	var msize = Global.mapsize
-	return msize*msize/4.0
+	return msize*msize
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# lépések (placeholder kiszámító)
-	start_steps = get_steps()
-	steps = start_steps
+	steps_total = get_steps()
+	steps_down = steps_total/4
+	steps_up = steps_total/4
+	steps_left = steps_total/4
+	steps_right = steps_total/4
 	AudioPlayer.play_game_music()
 	starting_visibility = Global.mapsize
 	$Player.set_process(false) # nem mozgathatjuk a játékost
@@ -26,9 +33,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	
+	# az F gomb megnyomásakor újra ránézhetünk a pályára pont- és időlevonásért cserébe
+	if Input.is_action_just_pressed("see_again") and !$BlackoutTimer.paused:
+		$Player/ViewField.texture_scale = starting_visibility
+		$BlackoutTimer.start(2)
+		score_penalty += 10
 	# ha elfogynak a lépések, feldobja a pause menüt
-	if steps == 0:
+	if steps_left + steps_right + steps_up + steps_down == 0:
 		Engine.time_scale = 0
 		$PauseMenu.show()
 		if !calced:
@@ -67,13 +78,13 @@ func progress_the_game(current_score):
 # megjelenítjük a pályavégi összesítést
 func win_screen():
 	Engine.time_scale = 0
-	var current_score = ceil($Timer.time_left) + steps
+	var current_score = ceil($Timer.time_left) + steps_left + steps_right + steps_up + steps_down - score_penalty
 	if !calced:
 		progress_the_game(current_score)
 		AudioPlayer.play_fx(Global.game_win)
 		calced = true
 	$MapEnd.show()
-	if Global.level == 3:
+	if Global.level == 6:
 		$MapEnd/Menu.visible = false
 	$MapEnd/Score.text = str(current_score)
 	$MapEnd/TotalScore.text = str(Global.score)
@@ -87,7 +98,7 @@ func _on_timer_timeout():
 # ha az "újraindításra" kattintunk, újrakezdi a játékot
 func _on_restart_pressed():
 	Engine.time_scale = 1
-	steps = start_steps
+	# steps = start_steps
 	get_tree().reload_current_scene()
 	AudioPlayer.play_fx(Global.menu_button_sound)
 
@@ -99,10 +110,10 @@ func _on_exit_pressed():
 #továbblépés a következő pályára
 func _on_continue_pressed():
 	Engine.time_scale = 1
-	steps = start_steps
+	#steps = start_steps
 	AudioPlayer.play_fx(Global.menu_button_sound)
 	Global.save_game()
-	if Global.level < 3:
+	if Global.level < 6:
 		get_tree().reload_current_scene()
 	else:
 		get_tree().change_scene_to_file("res://outro.tscn")
@@ -125,9 +136,9 @@ func _on_menu_pressed():
 	get_tree().change_scene_to_file("res://menu.tscn")
 
 # Mikor az első pár másodperc lejár, a mapot lesötétíjük és a karakter irányíthatóvá válik
-func _on_first_timer_timeout():
+func _on_blackout_timer_timeout():
 	$Timer.paused = false # elindítjuk a visszaszámlálást
-	$HUD/FirstTimerLabel.hide()
+	$HUD/BlackOutLabel.hide()
 	$Player/ViewField/AnimationPlayer.get_animation("shrink_visibility").track_set_key_value(0,0,starting_visibility)
 	$Player/ViewField/AnimationPlayer.get_animation("shrink_visibility").track_set_key_transition(0,0,0.06)
 	$Player/ViewField/AnimationPlayer.play("shrink_visibility")

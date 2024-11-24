@@ -50,7 +50,7 @@ func _process(_delta):
 			move(Vector2i.RIGHT)
 			$AnimatedSprite2D.play("moveR")
 			AudioPlayer.play_fx(Global.grass_step)
-				
+		
 func move(direction:Vector2i):
 	if direction: #létezik-e a vector
 			# koordináta vektor módosítása az adott iránynak megfelelően
@@ -66,7 +66,16 @@ func move(direction:Vector2i):
 				# átírjuk az előző jelenlegi pozíciót a mostanival
 				current_position = self.global_position
 				# egy lépéssel kevesebb marad
-				get_parent().steps -= 1
+				# get_parent().steps -= 1
+				match direction:
+					Vector2i.DOWN:
+						get_parent().steps_down -= 1
+					Vector2i.UP:
+						get_parent().steps_up -= 1
+					Vector2i.LEFT:
+						get_parent().steps_left -= 1
+					Vector2i.RIGHT:
+						get_parent().steps_right -= 1
 			else: #falnak ütközés és visszalökés
 				tween.tween_property(self,"position",position+Vector2(direction)*tile_size/4,0.2)
 				tween.tween_property(self,"position",position,0.2)
