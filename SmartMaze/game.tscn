@@ -139,7 +139,7 @@ visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(48.1808, 27.0561)
-color = Color(0.6, 0.427451, 0.12549, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="MapEnd"]
 position = Vector2(995, 328.251)
