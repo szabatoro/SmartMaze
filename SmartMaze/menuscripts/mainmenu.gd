@@ -34,7 +34,7 @@ func show_and_hide(first, second):
 func _on_start_game_pressed():
 	# Újrainicializáljuk a global.gd-t kezdőadatokkal, illetve a megadott pályamérettel, ha az van
 	Global.mapsize = 10
-	Global.waittime = 20.0
+	Global.waittime = 30.0
 	Global.score = 0
 	get_tree().change_scene_to_file("res://intro.tscn")
 	AudioPlayer.play_fx(Global.menu_button_sound)
