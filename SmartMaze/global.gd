@@ -12,7 +12,7 @@ var level = 1
 var mapsize = 10
 
 # időzítő
-var waittime = 20.0
+var waittime = 30.0
 
 # pontszám
 var score = 0
