@@ -147,6 +147,12 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Vissza a menübe"
 
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.211765, 0.45098, 0.0705882, 1)
+
 [connection signal="pressed" from="cheat_button" to="." method="_on_cheat_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/Save" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="back_to_menu" to="." method="_on_back_to_menu_pressed"]
