@@ -33,6 +33,7 @@ project/assembly_name="Maze"
 [gui]
 
 theme/custom="res://theme.tres"
+theme/custom_font="res://assets/SMFont.ttf"
 
 [input]
 
