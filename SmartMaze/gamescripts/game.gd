@@ -86,6 +86,7 @@ func win_screen():
 	$MapEnd.show()
 	if Global.level == 6:
 		$MapEnd/Menu.visible = false
+		$MapEnd/TotalScoreLabel.text = "A játéknak vége. A játék alatt összeszedett pontszámod: "
 	$MapEnd/Score.text = str(current_score)
 	$MapEnd/TotalScore.text = str(Global.score)
 

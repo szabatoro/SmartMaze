@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdg7rf0xbklb8"]
+[gd_scene load_steps=7 format=3 uid="uid://bdg7rf0xbklb8"]
 
 [ext_resource type="Script" path="res://menuscripts/mainmenu.gd" id="1_eg0k6"]
 [ext_resource type="Script" path="res://menuscripts/settings.gd" id="2_ah383"]
 [ext_resource type="PackedScene" uid="uid://bquet8edprf6t" path="res://background.tscn" id="2_n0od7"]
 [ext_resource type="Script" path="res://menuscripts/menu_background.gd" id="3_01pvy"]
 [ext_resource type="Texture2D" uid="uid://dw6etidvxy2j0" path="res://assets/SM_Menu_Logo.png" id="3_jasd7"]
+[ext_resource type="Texture2D" uid="uid://buld8tt2ppx5w" path="res://assets/PauseWindow.png" id="6_i8fjx"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_eg0k6")
@@ -19,24 +20,24 @@ autostart = true
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_top = 171.0
-offset_bottom = 171.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Menu"]
-position = Vector2(996, 213)
+position = Vector2(989.5, 392)
 scale = Vector2(7.92188, 7.34375)
 texture = ExtResource("3_jasd7")
 
 [node name="Mute" type="Button" parent="Menu"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 1865.0
-offset_top = -169.0
-offset_right = 1918.0
-offset_bottom = -138.0
-grow_horizontal = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1864.0
+offset_right = 1920.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 2
 toggle_mode = true
@@ -44,42 +45,42 @@ text = "MUTE"
 
 [node name="StartGame" type="Button" parent="Menu"]
 layout_mode = 0
-offset_left = 856.0
-offset_top = 496.0
-offset_right = 1120.0
-offset_bottom = 527.0
+offset_left = 833.5
+offset_top = 645.0
+offset_right = 1133.5
+offset_bottom = 695.0
 text = "Új játék indítása"
 
 [node name="Settings" type="Button" parent="Menu"]
 layout_mode = 0
-offset_left = 856.0
-offset_top = 536.0
-offset_right = 1120.0
-offset_bottom = 567.0
+offset_left = 833.5
+offset_top = 709.0
+offset_right = 1133.5
+offset_bottom = 759.0
 text = "Beállítások"
 
 [node name="QuitGame" type="Button" parent="Menu"]
 layout_mode = 0
-offset_left = 856.0
-offset_top = 615.0
-offset_right = 1120.0
-offset_bottom = 646.0
+offset_left = 833.5
+offset_top = 837.0
+offset_right = 1133.5
+offset_bottom = 887.0
 text = "Kilépés"
 
 [node name="Scoreboard" type="Button" parent="Menu"]
 layout_mode = 0
-offset_left = 857.0
-offset_top = 575.0
-offset_right = 1121.0
-offset_bottom = 606.0
+offset_left = 833.5
+offset_top = 773.0
+offset_right = 1133.5
+offset_bottom = 823.0
 text = "Scoreboard"
 
 [node name="ContinueGame" type="Button" parent="Menu"]
 layout_mode = 0
-offset_left = 856.0
-offset_top = 456.0
-offset_right = 1120.0
-offset_bottom = 488.0
+offset_left = 833.5
+offset_top = 584.0
+offset_right = 1133.5
+offset_bottom = 634.0
 text = "Játék folytatása"
 
 [node name="Options" type="Control" parent="."]
@@ -93,6 +94,15 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("2_ah383")
+
+[node name="TextureRect" type="TextureRect" parent="Options"]
+layout_mode = 2
+offset_left = 664.0
+offset_top = 312.0
+offset_right = 1141.0
+offset_bottom = 512.0
+scale = Vector2(1.24, 2.36)
+texture = ExtResource("6_i8fjx")
 
 [node name="OptionsContainer" type="VBoxContainer" parent="Options"]
 layout_mode = 1
