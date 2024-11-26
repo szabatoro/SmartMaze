@@ -34,10 +34,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	# az F gomb megnyomásakor újra ránézhetünk a pályára pont- és időlevonásért cserébe
-	if Input.is_action_just_pressed("see_again") and !$BlackoutTimer.paused:
+	if Input.is_action_just_pressed("see_again") and $HUD/BrightenLabel/BrightenCooldown.is_stopped() and $BlackoutTimer.is_stopped():
 		$Player/ViewField.texture_scale = starting_visibility
-		$BlackoutTimer.start(2)
-		score_penalty += 10
+		$Player/ViewField/AnimationPlayer.get_animation("shrink_visibility").track_set_key_value(0,0,starting_visibility)
+		$Player/ViewField/AnimationPlayer.get_animation("shrink_visibility").track_set_key_transition(0,0,0.06)
+		$Player/ViewField/AnimationPlayer.play("shrink_visibility")
+		$HUD/BrightenLabel/BrightenCooldown.start(6)
+		score_penalty += 15 * Global.level
 	# ha elfogynak a lépések, feldobja a pause menüt
 	if steps_left + steps_right + steps_up + steps_down == 0:
 		Engine.time_scale = 0
@@ -139,6 +142,7 @@ func _on_menu_pressed():
 # Mikor az első pár másodperc lejár, a mapot lesötétíjük és a karakter irányíthatóvá válik
 func _on_blackout_timer_timeout():
 	$Timer.paused = false # elindítjuk a visszaszámlálást
+	$HUD/BrightenLabel/BrightenCooldown.start(5)
 	$HUD/BlackOutLabel.hide()
 	$Player/ViewField/AnimationPlayer.get_animation("shrink_visibility").track_set_key_value(0,0,starting_visibility)
 	$Player/ViewField/AnimationPlayer.get_animation("shrink_visibility").track_set_key_transition(0,0,0.06)

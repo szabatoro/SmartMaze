@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ns6o51gahc2n"]
+[gd_scene load_steps=21 format=3 uid="uid://ns6o51gahc2n"]
 
 [ext_resource type="PackedScene" uid="uid://b0jp7ff1hohqa" path="res://map.tscn" id="1_aqp5q"]
 [ext_resource type="Script" path="res://gamescripts/game.gd" id="1_d1m56"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Timer.gd" id="10_6rvc2"]
 [ext_resource type="Texture2D" uid="uid://buld8tt2ppx5w" path="res://assets/PauseWindow.png" id="11_7pkol"]
 [ext_resource type="Script" path="res://gamescripts/LevelLabel.gd" id="12_ovcqr"]
+[ext_resource type="Script" path="res://gamescripts/BrightenLabel.gd" id="13_uxc08"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_m451v"]
 font_size = 40
@@ -142,6 +143,28 @@ offset_bottom = 37.0
 scale = Vector2(1.24, 1.28)
 texture = ExtResource("10_5y5qp")
 
+[node name="BrightenLabel" type="Label" parent="HUD"]
+offset_left = 9.0
+offset_top = 544.0
+offset_right = 250.0
+offset_bottom = 575.0
+text = "F: pálya bevilágítása"
+script = ExtResource("13_uxc08")
+
+[node name="TextureRect" type="TextureRect" parent="HUD/BrightenLabel"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -9.0
+offset_top = -4.0
+offset_right = 141.0
+offset_bottom = 36.0
+scale = Vector2(1.88, 1)
+texture = ExtResource("10_5y5qp")
+
+[node name="BrightenCooldown" type="Timer" parent="HUD/BrightenLabel"]
+wait_time = 5.0
+one_shot = true
+
 [node name="BlackoutTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
@@ -261,6 +284,7 @@ offset_bottom = 1055.0
 theme_override_font_sizes/font_size = 40
 text = "Folytatás!"
 
+[connection signal="timeout" from="HUD/BrightenLabel/BrightenCooldown" to="HUD/BrightenLabel" method="_on_brighten_cooldown_timeout"]
 [connection signal="timeout" from="BlackoutTimer" to="." method="_on_blackout_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="HUD/Mapcounter" method="_on_timer_timeout"]
