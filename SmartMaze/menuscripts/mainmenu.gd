@@ -4,9 +4,10 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN, 0)
-	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, 1)
-	AudioPlayer.play_menu_music()
+	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN, 0)
+	#DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, 1)
+	if !AudioPlayer.is_menu_music_playing:
+		AudioPlayer.play_menu_music()
 
 # Játék betöltése
 func load_game():

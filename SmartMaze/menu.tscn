@@ -121,7 +121,6 @@ grow_vertical = 2
 [node name="Video" type="HBoxContainer" parent="Options/OptionsContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 4
 
 [node name="Labels" type="VBoxContainer" parent="Options/OptionsContainer/Video"]
