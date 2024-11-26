@@ -2,6 +2,7 @@ extends Node2D
 
 # a pálya, exportálva, hogy befolyásolhassuk az exportban megadott pálya asset méretét
 @export var tilemap: TileMap
+var is_game_over = false
 var steps_total # kezdetben a térkép méretéből számított összlépésszám
 # a lépések, amiket használni is fogunk a játék során
 var steps_up
@@ -53,7 +54,7 @@ func _process(_delta):
 		win_screen()
 
 	# pause menu
-	if Input.is_action_just_pressed("escape"):
+	if Input.is_action_just_pressed("escape") and !is_game_over:
 		# Engine.time_scale alapján eldönti, már pauseolva van-e
 		# majd megjeleníti/elrejti a pause menut
 		if Engine.time_scale == 1:
@@ -75,6 +76,7 @@ func progress_the_game(current_score):
 # kiszámítjuk a jelenlegi pontot, az egész játék során szerzett pontot,
 # megjelenítjük a pályavégi összesítést
 func win_screen():
+	is_game_over = true
 	Engine.time_scale = 0
 	var current_score = ceil($Timer.time_left) + steps_left + steps_right + steps_up + steps_down - score_penalty
 	if !calced: # ez az if kapu szükséges, mivel az update függvényen belül másképp ez minden képkocka alatt növelné a pontokat
@@ -90,6 +92,7 @@ func win_screen():
 
 # ha lejár az időzítő, bedob a pause menube
 func _on_timer_timeout():
+	is_game_over = true
 	Engine.time_scale = 0
 	$PauseMenu.show()
 	AudioPlayer.stop_game_music()
@@ -100,10 +103,10 @@ func _on_restart_pressed():
 	get_tree().reload_current_scene()
 	AudioPlayer.play_fx(Global.menu_button_sound)
 
-# kilépés a menübe
+# kilépés a játékból
 func _on_exit_pressed():
 	AudioPlayer.play_fx(Global.menu_button_sound)
-	get_tree().change_scene_to_file("res://menu.tscn")
+	get_tree().quit()
 
 # továbblépés a következő pályára
 func _on_continue_pressed():
