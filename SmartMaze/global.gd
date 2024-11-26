@@ -3,7 +3,7 @@
 extends Node
 
 # A mentésfájl elérési útja
-var save_path = "user://savefile.save"
+var save_path = "./savefile.save"
 
 # jelenlegi szint
 var level = 1
