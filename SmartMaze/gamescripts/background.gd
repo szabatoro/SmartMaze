@@ -9,7 +9,6 @@ func fill_background(ts):
 		for y in range(ts):
 			self.set_cell(0, Vector2i(x, y), 0, Vector2(randi() % 2,2))
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	await owner.ready
 	# kiszámoljuk mekkora a map

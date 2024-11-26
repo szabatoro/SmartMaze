@@ -1,7 +1,6 @@
 extends Timer
 
-
-# Called when the node enters the scene tree for the first time.
+# inicializáljuk a pálya teljesítését behatároló időzítőt
 func _ready():
 	wait_time = Global.waittime
 	self.paused = true

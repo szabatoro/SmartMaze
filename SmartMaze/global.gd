@@ -35,8 +35,6 @@ const grass_step = preload("res://assets/audio/grass_step.wav")
 
 # Scoreboard adatok
 var scoreboard_list = []
-# 1 játék indítás után, csak egyszer lehet menteni scoreboardra.
-# var scoreboard_saved_first = false
 
 # Játékváltozók mentése egy bináris fájlba
 func save_game():

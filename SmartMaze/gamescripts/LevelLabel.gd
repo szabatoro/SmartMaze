@@ -1,6 +1,5 @@
 extends Label
 
-
-# Called when the node enters the scene tree for the first time.
+# kiírjuk, hogy hányadik pályán vagyunk
 func _ready():
 	self.text = "SZINT: " + str(Global.level) + "/5"

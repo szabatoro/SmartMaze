@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dw6etidvxy2j0" path="res://assets/SM_Menu_Logo.png" id="8_y4p7w"]
 [ext_resource type="Script" path="res://gamescripts/BlackOutLabel.gd" id="9_3i6f4"]
 [ext_resource type="Texture2D" uid="uid://dip51o2qa7u6d" path="res://assets/LabelWindowSmall.png" id="10_5y5qp"]
-[ext_resource type="Script" path="res://Timer.gd" id="10_6rvc2"]
+[ext_resource type="Script" path="res://gamescripts/GameTimer.gd" id="10_6rvc2"]
 [ext_resource type="Texture2D" uid="uid://buld8tt2ppx5w" path="res://assets/PauseWindow.png" id="11_7pkol"]
 [ext_resource type="Script" path="res://gamescripts/LevelLabel.gd" id="12_ovcqr"]
 [ext_resource type="Script" path="res://gamescripts/BrightenLabel.gd" id="13_uxc08"]
