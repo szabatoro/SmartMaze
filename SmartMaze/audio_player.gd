@@ -7,6 +7,8 @@ extends Node
 # const fx_time_alert_sound = preload("")
 
 var temp
+var is_menu_music_playing = false
+var is_game_music_playing = false
 
 # A két AudioStreamPlayer a menühöz és a játékhoz
 var menu_music_player: AudioStreamPlayer
@@ -33,10 +35,12 @@ func _ready():
 # Menü zene lejátszása
 func play_menu_music():
 	menu_music_player.play()
+	is_menu_music_playing = true
 
 # Menü zene megállítása
 func stop_menu_music():
 	menu_music_player.stop()
+	is_menu_music_playing = false
 
 # Menü zene szüneteltetése és folytatása
 func toggle_menu_music():
@@ -50,10 +54,12 @@ func toggle_menu_music():
 # Játék zene lejátszása
 func play_game_music():
 	game_music_player.play()
+	is_game_music_playing = true
 
 # Játék zene megállítása
 func stop_game_music():
 	game_music_player.stop()
+	is_game_music_playing = false
 
 # Játék zene szüneteltetése és folytatása
 func toggle_game_music():
