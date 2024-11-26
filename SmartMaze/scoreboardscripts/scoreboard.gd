@@ -1,19 +1,23 @@
 extends Control
 
 var elerteredmeny = Global.score
+var jelenlegi_szint = Global.level
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#$ScrollContainer.get_v_scrollbar().rect_scale.x = 0
 	update_scoreboard()
-	AudioPlayer.play_menu_music()
+	if !AudioPlayer.is_menu_music_playing:
+		AudioPlayer.play_menu_music()
+		if AudioPlayer.is_game_music_playing:
+			AudioPlayer.stop_game_music()
 	$HBoxContainer/Points.text = "0"
-	if elerteredmeny != 0:
+	if elerteredmeny != 0 && jelenlegi_szint == 6:
 		$Score.text = $Score.text + str(elerteredmeny)
-		
 	else:
 		$HBoxContainer.hide()
-		$Score.text = "Még nincs elért eredményed!"
+		# $Score.text = "Még nincs elért eredményed!"
+		$Score.hide()
 		
 
 #var user_panel = preload("res://scoreboardscripts/scoreboard_user.tscn")
@@ -169,5 +173,5 @@ func savedataclear():
 
 func setdefaultglobal():
 	Global.mapsize = 10
-	Global.waittime = 20.0
+	Global.waittime = 30.0
 	Global.score = 0

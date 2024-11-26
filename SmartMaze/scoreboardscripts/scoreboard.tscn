@@ -11,6 +11,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3vr1v")
 
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.211765, 0.45098, 0.0705882, 1)
+
 [node name="cheat_button" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
@@ -139,19 +145,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -68.5
-offset_top = -69.0
-offset_right = 68.5
-offset_bottom = -38.0
+offset_left = -152.0
+offset_top = -72.0
+offset_right = 148.0
+offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Vissza a menübe"
-
-[node name="Background" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0.211765, 0.45098, 0.0705882, 1)
 
 [connection signal="pressed" from="cheat_button" to="." method="_on_cheat_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/Save" to="." method="_on_save_button_pressed"]
