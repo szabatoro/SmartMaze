@@ -42,6 +42,7 @@ func _process(_delta):
 
 	# ha elfogynak a lépések, feldobja a pause menüt
 	if steps_left + steps_right + steps_up + steps_down == 0:
+		is_game_over = true
 		Engine.time_scale = 0 # leállítjuk a játék működését
 		$PauseMenu.show() # megjelnítjük a szünetmenüt
 		if !calced: # ez az if kapu szükséges, mivel az update függvényen belül másképp ez minden képkocka alatt lejátszaná a hangokat
