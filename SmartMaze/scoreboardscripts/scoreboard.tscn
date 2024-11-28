@@ -15,7 +15,7 @@ script = ExtResource("1_3vr1v")
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(0.298706, 0.547275, 0.352269, 1)
+color = Color(0.333333, 0.6, 0.388235, 1)
 
 [node name="cheat_button" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
