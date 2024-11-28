@@ -48,8 +48,6 @@ void disable_ansi_escseq() {
 
 typedef int** mtx;
 
-
-
 void prep_env() {
 	ANSI_SEQ_ON;
 	srand(time(NULL));

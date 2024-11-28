@@ -2,7 +2,6 @@ extends TileMap
 
 const MIN_MAZE_SIZE = 5
 const MAZE_SAFETY_SIZE = 3
-const STRETCH_RATIO = 2
 const KILLSWITCH = 100
 const PATH = 0
 const WALL = 1
