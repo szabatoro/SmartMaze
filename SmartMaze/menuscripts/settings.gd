@@ -3,7 +3,20 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if (Global.fullscreen == 0):
+		$OptionsContainer/Video/Checks/FullScreen.button_pressed = false
+	else:
+		$OptionsContainer/Video/Checks/FullScreen.button_pressed = true
+	
+	#if (Global.borderless == 0):
+	#	$OptionsContainer/Video/Checks/Borderless.button_pressed = false
+	#else:
+	#	$OptionsContainer/Video/Checks/Borderless.button_pressed = true
+		
+	if (Global.vsync == 0):
+		$OptionsContainer/Video/Checks/VSync.button_pressed = false
+	else:
+		$OptionsContainer/Video/Checks/VSync.button_pressed = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,11 +30,13 @@ func _on_full_screen_toggled(toggled_on):
 	if (toggled_on):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN, 0)
 		screen_size_container.hide()
+		Global.fullscreen = 1
 	else:
 		_on_screen_size_selector_item_selected(1)
 		_on_borderless_toggled(0)
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED, 0)
 		screen_size_container.show()
+		Global.fullscreen = 0
 
 
 
@@ -31,16 +46,20 @@ func _on_borderless_toggled(toggled_on):
 	AudioPlayer.play_fx(Global.menu_button_sound)
 	if (toggled_on):
 		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, 1, 0)
+		#Global.borderless = 1
 	else:
 		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, 0, 0)
+		#Global.borderless = 0
 
 
 func _on_v_sync_toggled(toggled_on):
 	AudioPlayer.play_fx(Global.menu_button_sound)
 	if (toggled_on):
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED,0)
+		Global.vsync = 1
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED,0)
+		Global.vsync = 0
 
 
 func _on_screen_size_selector_item_selected(index):

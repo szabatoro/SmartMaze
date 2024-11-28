@@ -17,6 +17,12 @@ var waittime = 30.0
 # pontszám
 var score = 0
 
+# beállítások
+var fullscreen = 1
+# jobb, ha inkább menübe lépéskor visszavált border ablakra
+# var borderless = 0
+var vsync = 1
+
 # Menü és játékmenet zenék
 const menu_music = preload("res://assets/audio/SMMenu.mp3")
 const menu_music_sound_volume = -25

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://menuscripts/mainmenu.gd" id="1_eg0k6"]
 [ext_resource type="Script" path="res://menuscripts/settings.gd" id="2_ah383"]
-[ext_resource type="PackedScene" uid="uid://bquet8edprf6t" path="res://background.tscn" id="2_n0od7"]
+[ext_resource type="PackedScene" path="res://background.tscn" id="2_n0od7"]
 [ext_resource type="Script" path="res://menuscripts/menu_background.gd" id="3_01pvy"]
 [ext_resource type="Texture2D" uid="uid://dw6etidvxy2j0" path="res://assets/SM_Menu_Logo.png" id="3_jasd7"]
 [ext_resource type="Texture2D" uid="uid://buld8tt2ppx5w" path="res://assets/PauseWindow.png" id="6_i8fjx"]
