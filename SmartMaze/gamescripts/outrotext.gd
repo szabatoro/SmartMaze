@@ -15,7 +15,7 @@ func _on_text_timer_timeout():
 func _on_next_button_pressed():
 	match current_text:
 		1: update_textbox("[center]\"Szép volt,\" - szólt a labirintus - \"kijutottál, utazó. Mostmár szabad vagy. Melletted az ösvény, ami innen kivisz. \"[/center]")
-		2: update_textbox("[center]Megköszönöd a labirintusnak a segítséget és elindulsz az ösvényen. Nem sokkal később ismerős úton találod magad, ahonnan a pontosan oda érkezel vissza, ahonnan az erdőbe beindultál.\nElsőként jutottál ki az őserdőből.[/center]")
+		2: update_textbox("[center]Megköszönöd a labirintusnak a segítséget és elindulsz az ösvényen. Nem sokkal később ismerős úton találod magad, ahonnan pontosan oda érkezel vissza, ahonnan az erdőbe beindultál.\nElsőként jutottál ki az őserdőből.[/center]")
 		3: go_to_scoreboard()
 	AudioPlayer.play_fx(Global.menu_button_sound)
 
