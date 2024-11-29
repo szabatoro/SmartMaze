@@ -5,12 +5,11 @@ extends CharacterBody2D
 const tile_size = 16 # egy adott pályablokk mérete px-ben beégetve
 var current_tile:Vector2i # a játékos adott pillanatbeli tartózkodási helye
 var eligible_tiles # nem fal blokkok
-var current_position
+var moving = false
 
 func starting_position():
-	# a pályablokkok négyzetek, tehát az egyik oldal leolvasása elég
-	#tile_size = tilemap.get_tileset().tile_size.y 
-	# a vektor a textúra atlaszban lévő koordináták közül a járható úté, az ezekkel rendelkező blokkokat szedi össze
+	# a vektor a textúra atlaszban lévő koordináták közül a járható úté,
+	# az ezekkel rendelkező blokkokat szedi össze
 	eligible_tiles = tilemap.get_used_cells_by_id(0,-1,Vector2i(1,1),-1)
 	# a játékos mindig a legelső nem fal blokkból indul
 	current_tile = eligible_tiles.front()
@@ -21,20 +20,13 @@ func starting_position():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Megvárja a parent node-ban lévő script lefutását
-	await owner.ready
-	# elhelyezi a játékost a kezdőpontban
-	starting_position()
+	await owner.ready # Megvárja a parent node-ban lévő script lefutását
+	starting_position() # elhelyezi a játékost a kezdőpontban
 
-var moving = false
-var sprint:float
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if moving == false: #nem mozgunk 
-		# leolvassa a karakter jelenlegi pozícióját
-		current_position = self.global_position
-		#irány vector választása és animáció kezdése
-		if Input.is_action_pressed("down"):
+	if moving == false: #ha nem mozgunk 
+		if Input.is_action_pressed("down"):#irány vector választása és animáció kezdése lépéshanglejátszása
 			move(Vector2i.DOWN)
 			$AnimatedSprite2D.play("moveD")
 			AudioPlayer.play_fx(Global.grass_step)
@@ -53,33 +45,28 @@ func _process(_delta):
 		
 func move(direction:Vector2i):
 	if direction: #létezik-e a vector
-			# koordináta vektor módosítása az adott iránynak megfelelően
-			var next_tile = current_tile + direction
-			var tween = create_tween() # 'tween', a csuszáshoz használt funkció.
-			moving = true #mostantól mozgunk
-			# ha az adott irányban nem fal van, lépünk
-			if eligible_tiles.has(next_tile):
-				current_tile = next_tile
-				# mozgás a kövekező tile-ra
-				tween.tween_property(self,"position",position+Vector2(direction)*tile_size,0.4)
-				tween.tween_callback(move_end)
-				# átírjuk az előző jelenlegi pozíciót a mostanival
-				current_position = self.global_position
-				# egy lépéssel kevesebb marad
-				# get_parent().steps -= 1
-				match direction:
-					Vector2i.DOWN:
-						get_parent().steps_down -= 1
-					Vector2i.UP:
-						get_parent().steps_up -= 1
-					Vector2i.LEFT:
-						get_parent().steps_left -= 1
-					Vector2i.RIGHT:
-						get_parent().steps_right -= 1
-			else: #falnak ütközés és visszalökés
-				tween.tween_property(self,"position",position+Vector2(direction)*tile_size/4,0.2)
-				tween.tween_property(self,"position",position,0.2)
-				tween.tween_callback(move_end)
+		# adott iránynak megfelelő következő koordinátája 
+		var next_tile = current_tile + direction
+		var tween = create_tween() # 'tween', a csuszáshoz használt funkció.
+		moving = true #mostantól mozgunk
+		if eligible_tiles.has(next_tile): # ha az adott irányban járható út van, lépünk
+			current_tile = next_tile
+			# mozgás a kövekező tile-ra
+			tween.tween_property(self,"position",position+Vector2(direction)*tile_size,0.4)
+			tween.tween_callback(move_end)
+			match direction: # levononk egy lépést a megfelelő irányból
+				Vector2i.DOWN:
+					get_parent().steps_down -= 1
+				Vector2i.UP:
+					get_parent().steps_up -= 1
+				Vector2i.LEFT:
+					get_parent().steps_left -= 1
+				Vector2i.RIGHT:
+					get_parent().steps_right -= 1
+		else: #falnak ütközés és visszalökés
+			tween.tween_property(self,"position",position+Vector2(direction)*tile_size/4,0.2)
+			tween.tween_property(self,"position",position,0.2)
+			tween.tween_callback(move_end)
 
 func move_end():
 	moving = false #abbahagytuk a mozgást
