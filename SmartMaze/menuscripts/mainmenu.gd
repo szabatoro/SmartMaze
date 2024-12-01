@@ -37,6 +37,7 @@ func _on_start_game_pressed():
 	Global.mapsize = 10
 	Global.waittime = 30.0
 	Global.score = 0
+	Global.level = 1
 	get_tree().change_scene_to_file("res://intro.tscn")
 	AudioPlayer.play_fx(Global.menu_button_sound)
 	AudioPlayer.stop_menu_music()
